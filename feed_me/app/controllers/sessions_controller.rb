@@ -23,7 +23,7 @@ skip_before_filter :verify_authenticity_token, only: :create
         session[:current_user] = user.id
         redirect_to root_path
       else
-        render "/auth/developer"
+        render "/auth/:provider"
       end
     end
   end
