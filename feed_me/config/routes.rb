@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
   root    "home#index"
 
-  get     "/auth/developer",          to: "sessions#new",     as: :signin
-  post    "/auth/developer/callback", to: "sessions#create",  as: :sessions
+  get     "/auth/developer",          to: "sessions#new",     as: :developer_signin
+  get     "/auth/:provider",          to: "sessions#new",     as: :signin
+  post    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
   delete  "/users/signout",           to: "sessions#destroy", as: :signout
 
   get   "/twitter", to: "feed#index"
