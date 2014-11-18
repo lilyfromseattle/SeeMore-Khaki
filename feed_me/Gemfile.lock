@@ -53,6 +53,10 @@ GEM
       multipart-post (>= 1.2, < 3)
     hashie (3.3.1)
     hike (1.2.3)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
+    httpclient (2.5.3.3)
     i18n (0.6.11)
     jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
@@ -70,6 +74,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    oauth (0.4.7)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -140,6 +145,12 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    vimeo (1.5.4)
+      httparty (>= 0.4.5)
+      httpclient (>= 2.1.5.2)
+      json (>= 1.1.9)
+      multipart-post (>= 1.0.1)
+      oauth (>= 0.4.3)
 
 PLATFORMS
   ruby
@@ -149,6 +160,7 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 4.0.0)
   dotenv-rails
+  httparty (~> 0.13.3)
   jbuilder (~> 2.0)
   jquery-rails
   omniauth
@@ -159,3 +171,4 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   uglifier (>= 1.3.0)
+  vimeo
