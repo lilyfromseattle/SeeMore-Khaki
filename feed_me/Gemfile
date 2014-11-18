@@ -37,6 +37,7 @@ end
 
 gem 'twitter', '~> 5.13.0'
 
+gem 'vimeo'
 
 
 # Use ActiveModel has_secure_password

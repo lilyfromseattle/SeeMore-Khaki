@@ -1,14 +1,10 @@
 Rails.application.routes.draw do
 
+  root    "home#index"
 
-
-
-
-
-  root  "home#index"
-
-
-  get  "/auth/twitter/callback",    to: "users#create"
+  get     "/auth/:provider",          to: "sessions#new",     as: :signin
+  post    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
+  delete  "/users/signout",           to: "sessions#destroy", as: :signout
 
   post  "/auth/:provider/callback",    to: "users#create", as:   :user_create
 
