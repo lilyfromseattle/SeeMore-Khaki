@@ -6,7 +6,12 @@ Rails.application.routes.draw do
 
 
   root  "home#index"
+
+
+  get  "/auth/twitter/callback",    to: "users#create"
+
   post  "/auth/:provider/callback",    to: "users#create", as:   :user_create
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
