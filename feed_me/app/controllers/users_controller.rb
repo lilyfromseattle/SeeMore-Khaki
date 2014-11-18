@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to "/"
     else
-      render "auth/developer"
+      render "auth/:provider"
     end
   end
 
