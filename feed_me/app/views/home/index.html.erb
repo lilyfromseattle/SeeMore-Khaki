@@ -1,3 +1,7 @@
-<% unless session[:user_id] %>
-  <%= link_to "Sign Up", "/auth/developer/" %>
+<% current_user = session[:current_user] %>
+<% if current_user %>
+  <p>Logged in as <%= User.find(current_user).name %></p>
+  <%= link_to "Sign Out", signout_path, {method: "delete"} %>
+<% else %>
+  <%= link_to "Sign Up", signin_path %>
 <% end %>
