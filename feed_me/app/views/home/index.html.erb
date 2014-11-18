@@ -1,5 +1,8 @@
 <% current_user = session[:current_user] %>
 <% if current_user %>
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
   <p>Logged in as <%= User.find(current_user).name %></p>
   <%= link_to "Sign Out", signout_path, {method: "delete"} %>
 <% else %>

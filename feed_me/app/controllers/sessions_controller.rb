@@ -13,6 +13,7 @@ skip_before_filter :verify_authenticity_token, only: :create
     puts "*"*80, current_user
     if current_user
       session[:current_user] = current_user.id
+      flash.notice = "Welcome back, #{current_user.name}!"
       redirect_to root_path
     else
       user = User.new(name: form_hash[:name],
@@ -21,6 +22,7 @@ skip_before_filter :verify_authenticity_token, only: :create
                uid: auth_hash[:uid])
       if user.save
         session[:current_user] = user.id
+        flash.notice = "Thanks for making a FeedMe account, #{user.name}!"
         redirect_to root_path
       else
         render "/auth/:provider"
