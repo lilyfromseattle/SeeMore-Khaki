@@ -1,3 +1,6 @@
-<% unless session[:user_id] %>
+<% if current_user = session[:user_id] %>
+  <p>Logged in as <%= User.find(current_user).name %></p>
+  <%= link_to "Sign Out", signout_path %>
+<% else %>
   <%= link_to "Sign Up", "/auth/developer/" %>
 <% end %>
