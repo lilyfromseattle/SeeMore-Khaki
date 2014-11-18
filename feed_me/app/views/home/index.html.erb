@@ -1,0 +1,3 @@
+<% unless session[:user_id] %>
+  <%= link_to "Sign Up", "/auth/developer/" %>
+<% end %>
