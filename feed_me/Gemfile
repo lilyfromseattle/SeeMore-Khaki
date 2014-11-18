@@ -34,6 +34,8 @@ group :development do
   gem "binding_of_caller"
 end
 
+gem 'vimeo'
+
 gem 'twitter', '~> 5.13.0'
 
 # Use ActiveModel has_secure_password
