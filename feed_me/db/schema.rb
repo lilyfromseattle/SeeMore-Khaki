@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118004130) do
+ActiveRecord::Schema.define(version: 20141118204732) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: true do |t|
+    t.string   "service"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "authors_users", force: true do |t|
+    t.integer  "author_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "twitters", force: true do |t|
     t.datetime "created_at"
@@ -26,6 +41,8 @@ ActiveRecord::Schema.define(version: 20141118004130) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
   end
 
 end
