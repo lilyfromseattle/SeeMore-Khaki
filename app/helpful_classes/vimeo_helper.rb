@@ -23,9 +23,11 @@ class VimeoHelper
 
   def query_for_author
     db_or_api
-    # The above method searches the db for the author, 
+    # The above method searches the db for the author,
     # does api query if author isn't in db
-    if @api_data.class == Hash
+    if @author.class == Author
+      @author
+    elsif @api_data.class == Hash
       new_author = Author.new(name: @author, service: "Vimeo")
       new_author.save
       @author = new_author
