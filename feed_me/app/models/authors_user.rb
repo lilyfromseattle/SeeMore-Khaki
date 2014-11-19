@@ -1,4 +1,4 @@
-class AuthorsUsers < ActiveRecord::Base
+class AuthorsUser < ActiveRecord::Base
   belongs_to :author
   belongs_to :user
 end

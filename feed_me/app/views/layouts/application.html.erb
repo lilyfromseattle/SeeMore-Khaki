@@ -12,7 +12,22 @@
     Pretend I am a monster face
     <hr>
   </header>
+  <% if session[:current_user] %>
+      <form id = "twitter-form">
+        <input type="text" id="twitter-search" />
+        <button id = "twitter-submit-button">Submit</button>
+      </form>
 
+      <div id = "vimeo-form">
+      </div>
+
+      <div id = "github-form">
+      </div>
+
+      <div id = "instagram-form">
+      </div>
+
+  <% end %>
 
   <%= yield %>
 
