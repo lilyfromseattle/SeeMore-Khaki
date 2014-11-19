@@ -21,14 +21,22 @@ class Vimeo
   end
 
   def query_for_author
-    @api_data = Vimeo::Simple::User.info(@author).parsed_response
-    if @api_data.keys.length >= 21 &&
-      #WHAT ABOUT WHEN THE AUTHOR IS ALREADY IN THE AUTHORS DB!??!
+    db_or_api #This method checks the db for the author, if they're not there, it gets api data
+    if @api_data.class == Hash
       new_author = Author.new(@author)
       new_author.service = "Vimeo"
-      new_author.user =
+      new_author.save
+      return new_author
     else
-      return "That is not a valid vimeo user name."
+      return @api_data
+    end
+  end
+
+  def db_or_api
+    if Author.find_by(name: @author, service: "Vimeo").length > 0
+      @author = Author.find_by(name: @author, service: "Vimeo")
+    else
+      @api_data = Vimeo::Simple::User.info(@author).parsed_response
     end
   end
 
