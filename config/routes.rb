@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
 ######### authorization
 
-# this route is weird because sessions#new doesn't actually do anything, I just want omniauth to do some magic, what do I do?
-  get    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
+  get     "/auth/:provider/callback", to: "sessions#create",  as: :sessions
+  post     "/auth/:provider/callback", to: "sessions#create"
   delete  "/users/signout",           to: "sessions#destroy", as: :signout
 
 

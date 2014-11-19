@@ -1,13 +1,8 @@
 class SessionsController < ApplicationController
 skip_before_filter :verify_authenticity_token, only: :create
-# otherwise rails clobbers the session because callback is sent as a post request
-# except for instagram? wut?
-
-  def new
-  end
+# otherwise rails clobbers the session because callback is sent as a post request (from some APIs)
 
   def create
-    raise
     user = User.find_by_provider(provider, uid)
     if user
       session[:current_user] = user.id
@@ -39,6 +34,7 @@ skip_before_filter :verify_authenticity_token, only: :create
 
     def new_user_params
       {
+        name:     name,
         provider: provider,
         uid:      uid
       }
@@ -48,7 +44,7 @@ skip_before_filter :verify_authenticity_token, only: :create
       request.env['omniauth.auth']
     end
 
-    def form_hash
+    def api_hash
       auth_hash[:info]
     end
 
@@ -58,6 +54,10 @@ skip_before_filter :verify_authenticity_token, only: :create
 
     def uid
       auth_hash[:uid]
+    end
+
+    def name
+      api_hash[:name]
     end
 
     def notice(action, name)
