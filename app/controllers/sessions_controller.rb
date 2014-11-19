@@ -2,9 +2,6 @@ class SessionsController < ApplicationController
 skip_before_filter :verify_authenticity_token, only: :create
 # otherwise rails clobbers the session because callback is sent as a post request
 
-  def new
-  end
-
   def create
     user = User.find_by_provider(provider, uid)
     if user
@@ -39,18 +36,10 @@ skip_before_filter :verify_authenticity_token, only: :create
       {
         name:     form_hash[:name],
         email:    form_hash[:email],
-        provider: auth_hash[:provider],
-        uid:      auth_hash[:uid]
+        provider: provider,
+        uid:      uid
       }
 
-    end
-
-    def provider
-      auth_hash[:provider]
-    end
-
-    def uid
-      auth_hash[:uid]
     end
 
     def auth_hash
@@ -59,6 +48,14 @@ skip_before_filter :verify_authenticity_token, only: :create
 
     def form_hash
       auth_hash[:info]
+    end
+
+    def provider
+      auth_hash[:provider]
+    end
+
+    def uid
+      auth_hash[:uid]
     end
 
     def notice(action, name)
