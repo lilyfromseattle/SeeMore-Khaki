@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
 skip_before_filter :verify_authenticity_token, only: :create
 # otherwise rails clobbers the session because callback is sent as a post request
 
+  def new
+  end
+  
   def create
     user = User.find_by_provider(provider, uid)
     if user
