@@ -1,8 +1,15 @@
 
 <% current_user = session[:current_user] %>
+
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
 <% if current_user %>
   <p>Logged in as <%= User.find(current_user).name %></p>
   <%= link_to "Sign Out", signout_path, {method: "delete"} %>
+  <%= link_to "View Feed", feed_path(current_user) %>
+
 <% else %>
   <%= link_to "Sign Up", developer_signin_path %>
   <%= link_to "Sign Up With Twitter", "auth/twitter" %>
