@@ -21,7 +21,7 @@ skip_before_filter :verify_authenticity_token, only: :create
         redirect_to root_path
 
       else
-        render "/auth/:provider"
+        render signin_path
       end
     end
   end
@@ -39,18 +39,9 @@ skip_before_filter :verify_authenticity_token, only: :create
       {
         name:     form_hash[:name],
         email:    form_hash[:email],
-        provider: auth_hash[:provider],
-        uid:      auth_hash[:uid]
+        provider: provider,
+        uid:      uid
       }
-
-    end
-
-    def provider
-      auth_hash[:provider]
-    end
-
-    def uid
-      auth_hash[:uid]
     end
 
     def auth_hash
@@ -59,6 +50,14 @@ skip_before_filter :verify_authenticity_token, only: :create
 
     def form_hash
       auth_hash[:info]
+    end
+
+    def provider
+      auth_hash[:provider]
+    end
+
+    def uid
+      auth_hash[:uid]
     end
 
     def notice(action, name)

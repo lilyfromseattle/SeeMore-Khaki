@@ -3,19 +3,27 @@ Rails.application.routes.draw do
 
   root    "home#index"
 
-################## omniauth
-  get     "/auth/developer",          to: "sessions#new",     as: :developer_signin
+######### authorization
+
+# this route is weird because sessions#new doesn't actually do anything, I just want omniauth to do some magic, what do I do?
   get     "/auth/:provider",          to: "sessions#new",     as: :signin
   post    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
   delete  "/users/signout",           to: "sessions#destroy", as: :signout
 
-  get     "/users/:id/feed",          to: "feed#show",        as: :feed
+
+  # get     "/users/:current_user/feed",          to: "feed#show",        as: :feed
+
   # post  "/auth/:provider/callback",    to: "users#create", as:   :user_create
+
+  get     "/users/:id/feed",          to: "feed#show",        as: :feed
+
 
   get   "/twitter", to: "feed#index"
 
   get "/home/search",                 to: "home#search",      as: :search_results
   post "/home/search",                to: "home#search",      as: :search
+  post "/users/subscribe/:id",  to: "users#subscribe",  as: :subscribe
+  get "/home/subscribed", to: "home#subscribed", as: :subscribed_path
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

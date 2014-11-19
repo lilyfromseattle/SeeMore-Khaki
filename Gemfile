@@ -5,6 +5,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem "omniauth"
 gem "omniauth-github"
 gem 'omniauth-twitter'
+gem "omniauth-vimeo"
+gem "omniauth-instagram"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
@@ -36,6 +38,7 @@ group :development do
 end
 
 gem 'vimeo'
+gem 'instagram'
 
 gem 'twitter', '~> 5.13.0'
 
