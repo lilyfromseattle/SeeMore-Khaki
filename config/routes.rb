@@ -9,13 +9,15 @@ Rails.application.routes.draw do
   post    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
   delete  "/users/signout",           to: "sessions#destroy", as: :signout
 
-  get     "/users/:id/feed",          to: "feed#show",        as: :feed
+  get     "/users/:current_user/feed",          to: "feed#show",        as: :feed
   # post  "/auth/:provider/callback",    to: "users#create", as:   :user_create
 
   get   "/twitter", to: "feed#index"
 
   get "/home/search",                 to: "home#search",      as: :search_results
   post "/home/search",                to: "home#search",      as: :search
+  post "/users/subscribe/:id",  to: "users#subscribe",  as: :subscribe
+  get "/home/subscribed", to: "home#subscribed", as: :subscribed_path
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

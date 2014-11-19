@@ -4,6 +4,7 @@
   <tr>
     <td><%= @author.service %></td>
     <td><%= @author.name %></td>
-    <td></td>
+
+    <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
   </tr>
 </tbody>
