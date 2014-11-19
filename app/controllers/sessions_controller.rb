@@ -1,11 +1,13 @@
 class SessionsController < ApplicationController
 skip_before_filter :verify_authenticity_token, only: :create
 # otherwise rails clobbers the session because callback is sent as a post request
+# except for instagram? wut?
 
   def new
   end
-  
+
   def create
+    raise
     user = User.find_by_provider(provider, uid)
     if user
       session[:current_user] = user.id
@@ -21,7 +23,7 @@ skip_before_filter :verify_authenticity_token, only: :create
         redirect_to root_path
 
       else
-        render signin_path
+        render "/auth/#{provider}"
       end
     end
   end
@@ -37,8 +39,6 @@ skip_before_filter :verify_authenticity_token, only: :create
 
     def new_user_params
       {
-        name:     form_hash[:name],
-        email:    form_hash[:email],
         provider: provider,
         uid:      uid
       }
