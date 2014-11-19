@@ -18,11 +18,11 @@ class ApiHelper
       @timestamp = @crap["created_at"]
 
     elsif @site == "Vimeo"
-      @author = @crap["display_name"]
-      @avatar = @crap["portrait_medium"]
-      @content = @crap["videos_url"]
-      @url = @crap["profile_url"]
-      @timestamp = @crap["created_on"]
+      @title = @crap["title"]
+      @author = @crap["user_name"]
+      @avatar = @crap["user_portrait_medium"]
+      @content = @crap["url"]
+      @timestamp = @crap["upload_date"]
 
     elsif @site == "Github"
       @author = @crap["login"]
@@ -30,6 +30,9 @@ class ApiHelper
       @content = @crap[]
       @url = @crap["url"]
       @timestamp = @crap["created_at"]
+
+    elsif @site == "Instagram"
+      #STUFF HAPPENS
     end
     return {site => @site, author => @author, avatar => @avatar, content => @content, url => @url, timestamp => @timestamp}
   end
