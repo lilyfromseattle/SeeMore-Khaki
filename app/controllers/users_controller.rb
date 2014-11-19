@@ -35,4 +35,5 @@ class UsersController < ApplicationController
     def auth_hash
       params.require(request.env['omniauth.auth']).permit(:name, :email, :provider, :uid)
     end
+
 end
