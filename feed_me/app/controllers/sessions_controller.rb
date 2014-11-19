@@ -8,7 +8,13 @@ skip_before_filter :verify_authenticity_token, only: :create
   def create
     auth_hash = request.env['omniauth.auth']
     form_hash = auth_hash[:info]
-
+    puts "****************"
+    puts auth_hash.inspect
+    puts "name: #{form_hash[:name]}"
+    puts "email: #{form_hash[:email]}"
+    puts "provider: #{form_hash[:provider]}"
+    puts "uid: #{form_hash[:uid]}"
+    puts "****************"
     current_user = User.find_by_provider(auth_hash[:provider], auth_hash[:uid])
     if current_user
       session[:current_user] = current_user.id
@@ -16,6 +22,12 @@ skip_before_filter :verify_authenticity_token, only: :create
       redirect_to root_path
 
     else
+
+      #<OmniAuth::AuthHash::InfoHash description="" image="http://pbs.twimg.com/profile_images/509704727680937986/RkGwo7X4_normal.jpeg"
+      # location="" name="Holly Leary" nickname="Schleary" urls=#<OmniAuth::AuthHash Twitter="https://twitter.com/Schleary"
+      # Website=nil>>
+
+
       user = User.new(name: form_hash[:name],
                email: form_hash[:email],
                provider: auth_hash[:provider],
@@ -27,6 +39,7 @@ skip_before_filter :verify_authenticity_token, only: :create
         redirect_to root_path
 
       else
+        # can we change this redirect to root_path? It doesn't seem to render effectively for failures
         render "/auth/:provider"
       end
     end
@@ -42,7 +55,6 @@ skip_before_filter :verify_authenticity_token, only: :create
   private
 
     def new_user_params
-
     end
 
 end
