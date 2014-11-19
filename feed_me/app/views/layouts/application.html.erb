@@ -15,11 +15,13 @@
   <% if session[:current_user] %>
       <form id = "twitter-form">
         <input type="text" id="twitter-search" />
-        <button id = "twitter-submit-button">Submit</button>
+        <button id = "twitter-submit-button" class = "submit-button">Submit</button>
       </form>
 
-      <div id = "vimeo-form">
-      </div>
+  <form id = "vimeo-form">
+    <input type="text" id="vimeo-search" />
+    <button id = "vimeo-submit-button" class = "submit-button">Submit</button>
+  </form>
 
       <div id = "github-form">
       </div>
