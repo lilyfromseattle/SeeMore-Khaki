@@ -3,14 +3,12 @@ Rails.application.routes.draw do
 
   root    "home#index"
 
+################## omniauth
   get     "/auth/developer",          to: "sessions#new",     as: :developer_signin
   get     "/auth/:provider",          to: "sessions#new",     as: :signin
-
   post    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
-  # get     "/auth/:provider/callback", to: "sessions#create",  as: :sessions
-  # post    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
-
   delete  "/users/signout",           to: "sessions#destroy", as: :signout
+
   get     "/users/:id/feed",          to: "feed#show",        as: :feed
   # post  "/auth/:provider/callback",    to: "users#create", as:   :user_create
 
