@@ -39,7 +39,7 @@ gem 'vimeo'
 
 gem 'twitter', '~> 5.13.0'
 
-gem 'instagram'
+gem 'github_api'
 
 group :development do
   gem 'rspec-rails'
