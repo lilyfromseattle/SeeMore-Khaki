@@ -11,6 +11,6 @@
   <%= link_to "View Feed", feed_path(current_user) %>
 
 <% else %>
-  <%= link_to "Sign Up", developer_signin_path %>
-  <%= link_to "Sign Up With Twitter", "auth/twitter" %>
+  <%= link_to "Sign In with Fake Auth", developer_signin_path %>
+  <%= link_to "Sign In With Twitter", "auth/twitter" %>
 <% end %>
