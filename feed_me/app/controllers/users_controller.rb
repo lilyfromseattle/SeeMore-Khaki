@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  def new
+  end
 
   def create
     @user = User.new(auth_hash)
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
       session[:current_user] = @user.id
       redirect_to "/"
     else
-      render :signin_path
+      render :developer_signin_path
     end
   end
 
