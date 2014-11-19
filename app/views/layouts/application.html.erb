@@ -13,21 +13,17 @@
     <hr>
   </header>
   <% if session[:current_user] %>
-      <form id = "twitter-form">
-        <input type="text" id="twitter-search" />
-        <button id = "twitter-submit-button" class = "submit-button">Submit</button>
-      </form>
+      <%= form_tag("/home/search", method: "post") do %>
+        <%= text_field_tag :search, params[:search], :placeholder => "user" %>
+        <%= hidden_field_tag :service, "Vimeo" %>
+        <%= submit_tag "Search", :name => nil, :class => "button" %>
+      <% end %>
 
-  <form id = "vimeo-form">
-    <input type="text" id="vimeo-search" />
-    <button id = "vimeo-submit-button" class = "submit-button">Submit</button>
-  </form>
-
-      <div id = "github-form">
+      <!-- <div id = "github-form">
       </div>
 
       <div id = "instagram-form">
-      </div>
+      </div> -->
 
   <% end %>
 
