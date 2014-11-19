@@ -18,7 +18,7 @@ skip_before_filter :verify_authenticity_token, only: :create
         redirect_to root_path
 
       else
-        render "/auth/:provider"
+        render signin_path
       end
     end
   end
@@ -39,7 +39,6 @@ skip_before_filter :verify_authenticity_token, only: :create
         provider: provider,
         uid:      uid
       }
-
     end
 
     def auth_hash
