@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   # has_and_belongs_to_many :authors
 
 
-## these don't come through with these keys in all APIs; they need to go into user DB after auth hash has been parsed
+## email is not sent with all APIs
   # validates :email, presence: true
-  # validates :name, presence: true
+  validates :name, presence: true
   validates :uid, presence: true
   validates :provider, presence: true
 

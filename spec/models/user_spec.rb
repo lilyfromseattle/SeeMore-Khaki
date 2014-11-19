@@ -18,10 +18,10 @@ let(:user) { User.new(
     #   expect(user).to be_invalid
     # end
     #
-    # it "requires a username" do
-    #   user.name = nil
-    #   expect(user).to be_invalid
-    # end
+    it "requires a username" do
+      user.name = nil
+      expect(user).to be_invalid
+    end
 
     it "requires a uid" do
       user.uid = nil
