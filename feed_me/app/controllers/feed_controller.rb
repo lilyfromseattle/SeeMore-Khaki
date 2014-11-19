@@ -12,9 +12,9 @@ class FeedController < ApplicationController
     @authors.each do |author|
       if author.service == "Vimeo"
         Vimeo.new(author).query_for_vids.parse_api
-      # elsif author.service == "Twitter"
-
-    end
+      elsif author.service == "Twitter"
+        Twitter.new(author).parse_api
+      end
 
     end
     # @authors.each do author
