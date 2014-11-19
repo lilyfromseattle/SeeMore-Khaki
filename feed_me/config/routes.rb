@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   # get     "/auth/:provider/callback", to: "sessions#create",  as: :sessions
   # post    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
 
-
   delete  "/users/signout",           to: "sessions#destroy", as: :signout
   get     "/users/:id/feed",          to: "feed#show",        as: :feed
   # post  "/auth/:provider/callback",    to: "users#create", as:   :user_create
