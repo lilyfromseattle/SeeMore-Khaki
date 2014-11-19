@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get   "/twitter", to: "feed#index"
 
-
+  get "/users/:id/feed",                        to: "feed#show",        as: :feed
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
