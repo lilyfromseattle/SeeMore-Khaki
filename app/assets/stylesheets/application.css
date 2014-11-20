@@ -13,3 +13,39 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  /*padding: 0;
+  margin: 0;*/
+}
+#middle {
+  padding: 10px;
+}
+
+.search {
+  /*background: green;
+  width: 250px;
+  height: 50px;*/
+  display: inline-block;
+  /*margin-right: 0px;*/
+}
+
+.search-icon {
+  margin-left: -4px;
+  background:red;
+  display: inline-block;
+  height: 30px;
+}
+
+.button {
+  margin-left: -4px;
+  border: none;
+  height: 30px;
+}
+
+.text-field {
+  margin: 0;
+  border: none;
+  background: pink;
+  height: 30px;
+}
