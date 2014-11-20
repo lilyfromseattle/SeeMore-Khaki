@@ -42,6 +42,8 @@ gem 'instagram'
 
 gem 'twitter', '~> 5.13.0'
 
+gem 'github_api'
+
 group :development do
   gem 'rspec-rails'
 end
