@@ -9,10 +9,10 @@ class HomeController < ApplicationController
     end
   end
 
-  def subscribed
-    User
-    @new_person =
-  end
+  # def subscribed
+  #   User
+  #   @new_person =
+  # end
 
 
 
