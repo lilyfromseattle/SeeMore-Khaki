@@ -1,4 +1,5 @@
 class ApiHelper
+  
   def initialize(crap, site)
    @crap = crap
    @site = site
