@@ -30,6 +30,14 @@ header h1 {
   text-shadow: 1px 1px 6px yellowgreen;
 }
 
+header #login-stuff {
+  float: right;
+  font-family: "Indie Flower";
+  margin-top: 15px;
+  margin-right: 15px;
+  display: inline-block;
+}
+
 span {
   /*color: yellowgreen;
   text-shadow: 1px 1px 2px black;*/

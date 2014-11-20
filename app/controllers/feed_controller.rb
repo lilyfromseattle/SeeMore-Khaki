@@ -14,7 +14,10 @@ class FeedController < ApplicationController
         z = VimeoHelper.new(author)
         z.query_for_vids
         @posts += z.videos
-      # elsif author.service == "Twitter"
+      elsif author.service == "Twitter"
+        z = TwitterHelper.new(author)
+        z.query_for_posts
+        @posts += z.posts
       end
     end
     @posts.sort_by! { |post| DateTime.parse(post[:timestamp]) }
