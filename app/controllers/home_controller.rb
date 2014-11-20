@@ -8,8 +8,7 @@ class HomeController < ApplicationController
       @author = VimeoHelper.new(params[:search]).author
 
     elsif params[:service] == "Twitter"
-      @author = TwitterHelper.new(params[:search].author)
-
+      @author = TwitterHelper.new(params[:search]).author
     end
   end
 
