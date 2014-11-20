@@ -5,24 +5,36 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Quicksand|Amatic+SC|Indie+Flower' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
   <header>
-    Pretend I am a monster face
-    <hr>
+    <%= image_tag("monster.jpg", :id => "monster") %>
+    <h1><span>FEED ME</span></h1>
   </header>
   <% if session[:current_user] %>
-      <%= form_tag("/home/search", method: "post") do %>
-        <%= text_field_tag :search, params[:search], :placeholder => "user" %>
+    <!-- <div class = "search"> -->
+      <%= form_tag("/home/search", method: "post", class: "search") do %>
+      <!-- <div class "hidden"> -->
+        <%= text_field_tag :search, params[:search], :placeholder => "user", :class => "text-field" %>
         <%= hidden_field_tag :service, "Vimeo" %>
-        <%= submit_tag "Search Vimeo", :name => nil, :class => "button" %>
+        <%= submit_tag "Search", :name => nil, :class => "button" %>
       <% end %>
+
+      <div class = "search-icon">Vimeo</div>
+
       <%= form_tag("/home/search", method: "post") do %>
         <%= text_field_tag :search, params[:search], :placeholder => "user" %>
         <%= hidden_field_tag :service, "Twitter" %>
-        <%= submit_tag "Search Twitter", :name => nil, :class => "button" %>
+        <%= submit_tag "Search", :name => nil, :class => "button" %>
+
+      <!-- </div> -->
+        <div class = "search-icon">Twitter</div>
+
       <% end %>
+      <!-- <div class = "search-icon">Vimeo</div> -->
+    <!-- </div> -->
 
       <!-- <div id = "github-form">
       </div>
@@ -31,9 +43,9 @@
       </div> -->
 
   <% end %>
-
+  <div id = "middle">
   <%= yield %>
-
+  </div>
   <footer>
     <hr>
     Pretend I am monster teeth

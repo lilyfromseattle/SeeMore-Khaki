@@ -1,15 +1,14 @@
 class VimeoHelper
-  attr_accessor :author, :videos
+  attr_accessor :author
   def initialize author
     @author = author
-    @api_data = []
+    @api_data = ""
     @videos = []
-    @author.class == Author ? @avatar = "blah" : query_for_author
+    @author.class == Author ? @avatar = author.avatar : query_for_author
   end
 
   def query_for_vids
     @api_data = Vimeo::Simple::User.videos(@author.name).parsed_response
-    parse_api
   end
 
   def parse_api
