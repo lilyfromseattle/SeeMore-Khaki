@@ -4,7 +4,7 @@ class VimeoHelper
     @author = author
     @api_data = ""
     @videos = []
-    @author.class == Author ? @avatar = author.avatar : query_for_author
+    @author.class == Author ? @avatar = "blah" : query_for_author
   end
 
   def query_for_vids
