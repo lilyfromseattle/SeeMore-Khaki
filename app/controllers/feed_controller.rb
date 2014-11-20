@@ -11,19 +11,14 @@ class FeedController < ApplicationController
     @posts = []
     @authors.each do |author|
       if author.service == "Vimeo"
-<<<<<<< HEAD:feed_me/app/controllers/feed_controller.rb
-        Vimeo.new(author).query_for_vids.parse_api
-      elsif author.service == "Twitter"
-        Twitter.new(author).parse_api
-      end
-
-=======
         z = VimeoHelper.new(author)
         z.query_for_vids
         @posts += z.videos
-      # elsif author.service == "Twitter"
+      elsif author.service == "Twitter"
+        z = TwitterHelper.new(author)
+        z.query_for_posts
+        @posts += z.posts
       end
->>>>>>> 85b79a1d08e2e869ae2bc5cae2c6b2337b0e98d4:app/controllers/feed_controller.rb
     end
     @posts.sort_by! { |post| DateTime.parse(post[:timestamp]) }
     @posts.reverse!
