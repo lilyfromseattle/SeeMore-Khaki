@@ -4,10 +4,11 @@
   <tbody>
     <% @posts.each do |post| %>
     <tr>
-      <td><%= post.title %></td>
-      <td><%= post.content %></td>
-      <td><%= post.timestamp %></td>
+      <td><%= post[:title] %></td>
+      <td><%= post[:content] %></td>
+      <td><%= post[:timestamp] %></td>
       <td></td>
     </tr>
     <% end %>
+  </tbody>
   </body>
