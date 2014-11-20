@@ -29,13 +29,11 @@
       </div>
     </div>
   </header>
-<<<<<<< HEAD
-=======
+
   <div class="below-header zigzag">
 
   </div>
 
->>>>>>> 4714d904261134fc8cd5ba74538bbb44eefe1155
 
   <% if session[:current_user] %>
     <!-- <div class = "search"> -->
@@ -46,28 +44,7 @@
         <%= text_field_tag :search, params[:search], :placeholder => "user", class: "text-field" %>
         <%= hidden_field_tag :service, "Vimeo" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
-<<<<<<< HEAD
-        <div class = "search-icon">Vimeo</div>
-      <% end %>
-      <br>
-      <%= form_tag("/home/search", method: "post", class: "search") do %>
-        <%= text_field_tag :search, params[:search], :placeholder => "user" %>
-        <%= hidden_field_tag :service, "Twitter" %>
-        <%= submit_tag "Search", :name => nil, :class => "button" %>
-        <div class = "search-icon">Twitter</div>
-      <% end %>
-      <br>
-      <%= form_tag("/home/search", method: "post", class: "search") do %>
-      <!-- <div class "hidden"> -->
-        <%= text_field_tag :search, params[:search], :placeholder => "user", :class => "text-field" %>
-        <%= hidden_field_tag :service, "Github" %>
-        <%= submit_tag "Search", :name => nil, :class => "button" %>
-        <div class = "search-icon">GitHub</div>
-      <% end %>
 
-      <div id = "instagram-form">
-      </div> 
-=======
         <div class = "search-icon">
           <%= image_tag "vimeo_icon.png", class: "icon" %>
           <span class="sr-only">Vimeo Icon</span>
@@ -115,7 +92,7 @@
           </div>
         <% end %>
     </div>
->>>>>>> 4714d904261134fc8cd5ba74538bbb44eefe1155
+
 
   <% end %>
   <div id = "middle">
