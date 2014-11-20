@@ -15,11 +15,14 @@
   <% if session[:current_user] %>
     <!-- <div class = "search"> -->
       <%= form_tag("/home/search", method: "post", class: "search") do %>
+      <!-- <div class "hidden"> -->
         <%= text_field_tag :search, params[:search], :placeholder => "user", :class => "text-field" %>
         <%= hidden_field_tag :service, "Vimeo" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
+      <!-- </div> -->
+        <div class = "search-icon">Vimeo</div>
       <% end %>
-      <div class = "search-icon">Vimeo</div>
+      <!-- <div class = "search-icon">Vimeo</div> -->
     <!-- </div> -->
 
       <!-- <div id = "github-form">
