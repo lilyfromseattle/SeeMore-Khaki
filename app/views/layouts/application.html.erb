@@ -28,35 +28,51 @@
     </div>
 
   </header>
-  
+
   <% if session[:current_user] %>
     <!-- <div class = "search"> -->
+    <!-- VIMEO FORM: -->
       <%= form_tag("/home/search", method: "post", class: "search") do %>
       <!-- <div class "hidden"> -->
-        <%= text_field_tag :search, params[:search], :placeholder => "user", :class => "text-field" %>
+        <%= text_field_tag :search, params[:search], :placeholder => "user", class: "text-field" %>
         <%= hidden_field_tag :service, "Vimeo" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
-      <% end %>
+        <div class = "search-icon">
+          <%= image_tag "vimeo_icon.png", class: "icon" %>
+          <span class="sr-only">Vimeo Icon</span>
+        </div>
+      <% end %> <br>
 
-      <div class = "search-icon">Vimeo</div>
 
-      <%= form_tag("/home/search", method: "post") do %>
-        <%= text_field_tag :search, params[:search], :placeholder => "user" %>
+    <!-- TWITTER FORM: -->
+      <%= form_tag("/home/search", method: "post", class: "search") do %>
+        <%= text_field_tag :search, params[:search], :placeholder => "user", class: "text-field" %>
         <%= hidden_field_tag :service, "Twitter" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
 
       <!-- </div> -->
-        <div class = "search-icon">Twitter</div>
-
-      <% end %>
+        <div class="search-icon">
+          <%= image_tag "twitter_icon.png", class: "icon" %>
+          <span class="sr-only">Twitter Icon</span>
+        </div>
+      <% end %> <br>
       <!-- <div class = "search-icon">Vimeo</div> -->
     <!-- </div> -->
 
-      <!-- <div id = "github-form">
-      </div>
 
-      <div id = "instagram-form">
-      </div> -->
+    <!-- INSTAGRAM FORM: -->
+      <%= form_tag("/home/search", method: "post", class: "search") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "user", class: "text-field" %>
+        <%= hidden_field_tag :service, "Instagram" %>
+        <%= submit_tag "Search", name: nil, class: "button" %>
+
+        <div class="search-icon">
+          <%= image_tag "instagram_icon.png", class: "icon" %>
+          <span class="sr-only">Instagram Icon</span>
+        </div>
+      <% end %>
+
+
 
   <% end %>
   <div id = "middle">
