@@ -16,7 +16,9 @@ class FeedController < ApplicationController
         @posts += z.videos
       elsif author.service == "Twitter"
         z = TwitterHelper.new(author)
+        puts "ARE WE QUERYING FOR POSTS?"
         z.query_for_posts
+        
         @posts += z.posts
       end
     end
