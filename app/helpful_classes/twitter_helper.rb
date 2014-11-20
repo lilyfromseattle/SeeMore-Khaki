@@ -9,14 +9,23 @@ class TwitterHelper
   end
 
   def query_for_posts
+    puts "*****FOURRRRR!!!*********************"
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_API_KEY"]
+      config.consumer_secret     = ENV["TWITTER_API_SECRET"]
+      config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
+      config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
+    end
 
-    @api_data = ("https://api.twitter.com/1.1/include_entities=true&page=2")
 
-    # @api_data = HTTParty.get('http://twitter.com/statuses/public_timeline.json')
+    @api_data = client.user_search(@author, lang:'en').take(1)
+    puts "*****FIVE*********************"
+
     parse_api
   end
 
   def parse_api
+    puts "*****SIX*********************"
     @api_data.each do |post|
       @avatar ||= post["user_portrait_medium"]
       @posts << {
@@ -32,15 +41,18 @@ class TwitterHelper
     # The above method searches the db for the author,
     # does api query if author isn't in db
     puts "*****TWO**********************"
+    puts "******INSPECT OBJ*****#{@api_data.inspect}****************"
     if @author.class == Author
+      puts "*****WRONG OPTION*********************"
       @author
-    elsif @api_data.class == Hash
+    else
       puts "*****THREE*********************"
       new_author = Author.new(name: @author, service: "Twitter")
       new_author.save
       @author = new_author
-    else
-      @author = @api_data
+    # else
+    #   puts "*****FOURTH OPTION*********************"
+
     end
   end
 
@@ -62,11 +74,12 @@ class TwitterHelper
 
 
       puts "*****ONE.TWO*******************"
-      @api_data = client.search(@author, lang:'en')
+      @api_data = client.user_search(@author, lang:'en').take(1)
       puts "*****gets Client*************"
       puts "****#{@api_data.inspect}*************"
-      raise @api_data
+      # @api_data.
     end
-  end
 
+
+  end
 end
