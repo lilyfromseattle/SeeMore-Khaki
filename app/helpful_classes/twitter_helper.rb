@@ -1,3 +1,4 @@
+require 'httparty'
 class TwitterHelper
   attr_accessor :author, :posts
   def initialize author
@@ -8,11 +9,23 @@ class TwitterHelper
   end
 
   def query_for_posts
-    @api_data = HTTParty.get('http://twitter.com/statuses/public_timeline.json')
+    puts "*****FOURRRRR!!!*********************"
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_API_KEY"]
+      config.consumer_secret     = ENV["TWITTER_API_SECRET"]
+      config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
+      config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
+    end
+
+
+    @api_data = client.user_search(@author, lang:'en').take(1)
+    puts "*****FIVE*********************"
+
     parse_api
   end
 
   def parse_api
+    puts "*****SIX*********************"
     @api_data.each do |post|
       @avatar ||= post["user_portrait_medium"]
       @posts << {
@@ -23,28 +36,50 @@ class TwitterHelper
   end
 
   def query_for_author
+    puts "**************#{@author.inspect}"
     db_or_api
     # The above method searches the db for the author,
     # does api query if author isn't in db
+    puts "*****TWO**********************"
+    puts "******INSPECT OBJ*****#{@api_data.inspect}****************"
     if @author.class == Author
+      puts "*****WRONG OPTION*********************"
       @author
-    elsif @api_data.class == Hash
+    else
+      puts "*****THREE*********************"
       new_author = Author.new(name: @author, service: "Twitter")
       new_author.save
       @author = new_author
-    else
-      @author = @api_data
+    # else
+    #   puts "*****FOURTH OPTION*********************"
+
     end
   end
 
   def db_or_api
+    puts "*****ONE********DB OR ABP ##**************"
     if Author.find_by(name: @author, service: "Twitter")
       @author = Author.find_by(name: @author, service: "Twitter")
       puts "THe database stuff happened"
     else
       puts "Looking for API data"
-      @api_data = Twitter::Simple::User.info(@author).parsed_response
-    end
-  end
 
+      client = Twitter::REST::Client.new do |config|
+        config.consumer_key        = ENV["TWITTER_API_KEY"]
+        config.consumer_secret     = ENV["TWITTER_API_SECRET"]
+        config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
+        config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
+      end
+
+
+
+      puts "*****ONE.TWO*******************"
+      @api_data = client.user_search(@author, lang:'en').take(1)
+      puts "*****gets Client*************"
+      puts "****#{@api_data.inspect}*************"
+      # @api_data.
+    end
+
+
+  end
 end
