@@ -1,0 +1,10 @@
+<h1>Search Results</h1>
+<thead></thead>
+<tbody>
+  <tr>
+    <td><%= @author.service %></td>
+    <td><%= @author.name %></td>
+
+    <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
+  </tr>
+</tbody>

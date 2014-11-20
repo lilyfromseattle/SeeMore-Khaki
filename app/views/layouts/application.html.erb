@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FeedMe</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <header>
+    Pretend I am a monster face
+    <hr>
+  </header>
+  <% if session[:current_user] %>
+      <%= form_tag("/home/search", method: "post") do %>
+        <%= text_field_tag :search, params[:search], :placeholder => "user" %>
+        <%= hidden_field_tag :service, "Vimeo" %>
+        <%= submit_tag "Search", :name => nil, :class => "button" %>
+      <% end %>
+
+      <!-- <div id = "github-form">
+      </div>
+
+      <div id = "instagram-form">
+      </div> -->
+
+  <% end %>
+
+  <%= yield %>
+
+  <footer>
+    <hr>
+    Pretend I am monster teeth
+  </footer>
+
+</body>
+</html>
