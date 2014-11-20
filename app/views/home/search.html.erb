@@ -1,10 +1,10 @@
 <h1>Search Results</h1>
 <thead></thead>
 <tbody>
+<% @search_results.each do |result| %>
   <tr>
-    <td><%= @author.service %></td>
-    <td><%= @author.name %></td>
-
-    <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
-  </tr>
+    <td><%= result[:service] %>
+    <td><%= result[:name] %></td>
+  <tr>
+<% end %>
 </tbody>

@@ -1,19 +1,22 @@
 require "httparty"
 
 class InstagramHelper
-  attr_accessor :author
+  attr_accessor :results_array
 
-  def initialize(author)
-    find_by_author
+  def initialize(search_term)
+    url = "https://api.instagram.com/v1/users/search?q=#{search_term}&client_id=#{ENV["INSTAGRAM_CLIENT_ID"]}"
+    parse(HTTParty.get(url)["data"])
   end
 
-  def find_by_author
-    found_author = Author.find_by(name: @author, service: "Instagram")
-    if found_author
-      @author = found_author
-    else
-      @author = Author.create(name: @author, service: "Instagram")
+  def parse(search_results)
+    @results_array = []
+    search_results.each do |result|
+      @results_array << {
+        name:     result["username"],
+        avatar:   result["profile_picture"],
+        uid:      result["id"],
+        service:  "Instagram"
+      }
     end
   end
-
 end

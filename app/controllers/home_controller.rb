@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     if params[:service] == "Vimeo"
       @author = VimeoHelper.new(params[:search]).author
     elsif params[:service] == "Instagram"
-      @author = InstagramHelper.new(params[:search]).author
+      @search_results = InstagramHelper.new(params[:search]).results_array
     end
   end
 
