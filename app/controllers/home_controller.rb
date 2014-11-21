@@ -12,6 +12,8 @@ class HomeController < ApplicationController
       @search_results = @ig_hash.results_array
     elsif params[:service] == "Twitter"
       @author = TwitterHelper.new(params[:search]).author
+    elsif params[:service] == "GitHub"
+      @author = GithubHelper.new(@search_term)
     end
   end
 

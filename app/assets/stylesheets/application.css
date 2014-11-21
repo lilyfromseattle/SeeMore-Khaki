@@ -18,7 +18,7 @@ body {
   /*padding: 0;
   margin: 0;*/
   font-family: 'Quicksand';
-  background: snow;
+  background: white;
 }
 #middle {
   /*padding: 10px;*/
@@ -27,7 +27,11 @@ body {
 header h1 {
   font-size: 4em;
   display: inline-block;
-  text-shadow: 1px 1px 6px yellowgreen;
+  color: beige;
+  margin-left: 20%;
+  margin-right: 20%;
+  /*margin-top: -5px;*/
+  font-family: 'Slackey';
 }
 
 header #login-stuff {
@@ -36,7 +40,23 @@ header #login-stuff {
   margin-top: 15px;
   margin-right: 15px;
   display: inline-block;
+  width: 140px;
 }
+
+.sign-in {
+  display: inline-block;
+  text-decoration: none;
+  color: beige;
+  padding-bottom: 5px;
+}
+
+.sign-in:hover {
+  text-decoration: none;
+  text-shadow: 2px 2px 2px black;
+  color: beige;
+}
+
+
 
 .icon {
   margin-left: 5
@@ -61,29 +81,21 @@ span {
 }
 
 header, footer {
-  font-family: 'Amatic SC';
+  /*font-family: 'Amatic SC';*/
 }
 
 header {
-  position: fixed;
+  position: absolute;
   width: 100%;
   margin: 0;
-  height: 110px;
+  height: 130px;
   /*padding: 10px;*/
-  background: white;
-}
-
-header .inside-header {
-  background-color: green;
-  height: 100px;
-}
-
-.below-header {
   background: khaki;
-  height: 4px;
-  position: fixed;
-  z-index: 110;
+}
 
+.inside-header {
+  background-color: green;
+  height: 109px;
 }
 
 .zigzag {
@@ -99,20 +111,118 @@ header .inside-header {
   top: -10px;
   width: 100%;
   height: 20px;
+}
+
+.container2 {
+  color: red;
+  margin-top: 120px;
+  position: absolute;
+}
+
+.container2:before {
+  background: linear-gradient( 55deg, transparent 33.333%, white 33.333%,
+    white 66.667%, transparent 66.667% ),
+     linear-gradient( -55deg, transparent 33.333%, white 33.333%,
+       white 66.667%, transparent 66.667% );
+  background-size: 40px 80px;
+}
+
+.big-circle {
+  width: 50px;
+  height: 50px;
+  background: yellowgreen;
+  border-radius: 25px;
+  margin-left: 10px;
+  /*float: left;*/
+  position: fixed;
+  margin-top: 10px;
+}
+.small-circle {
+  width: 30px;
+  height: 30px;
+  background: yellowgreen;
+  border-radius: 15px;
+  margin-left: 50px;
+  margin-top: 50px;
+  /*float: left;*/
+  position: absolute;
+  z-index: 130;
+}
+
+.med-circle {
+  width: 40px;
+  height: 40px;
+  background: yellowgreen;
+  border-radius: 20px;
+  margin-left: 100px;
+  margin-top: 60px;
+  /*float: left;*/
+  position: absolute;
+  z-index: 130;
+}
+
+.xs-circle {
+  width: 20px;
+  height: 20px;
+  background: yellowgreen;
+  border-radius: 10px;
+  margin-left: 150px;
+  margin-top: 30px;
+  /*float: left;*/
+  position: absolute;
+  z-index: 130;
+}
+
+#float {
+  float: right;
+}
+/*.zigzag {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.zigzag:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  height: 20px;
 
 }
+
+.inside-header {
+  background-color: green;
+  height: 100px;
+}
+
+.below-header {
+  background: red;
+  height: 4px;
+  position: fixed;
+  z-index: 110;
+  margin-top: 130px;
+
+}
+
+
 
 .below-header:before {
   background:
     linear-gradient(
-      45deg, transparent 33.33%,
-      white 33.33%, white 66.66%,
-      transparent 66.666%
+      45deg, transparent 33.333%,
+      white 33.333%, white 66.667%,
+      transparent 66.667%
       ),
     linear-gradient(
+      -45deg, transparent 33.333%,
+      white 33.333%, white 66.667%,
+      transparent 66.667%
+      );
+  background-size: 40px 80px;
 
-      )
-}
+}*/
 
 form {
                 /*width:500px;*/
@@ -124,15 +234,15 @@ form {
 .search {
                 padding:8px 15px;
                 background:rgba(50, 50, 50, 0.2);
-                border:0px solid #dbdbdb;
+                border:0px solid red;
 }
 .button {
                 position:relative;
                 padding:1px 15px;
                 left:-8px;
-                border:2px solid #207cca;
-                background-color:#207cca;
-                color:#fafafa;
+                border:2px solid yellowgreen;
+                background-color:green;
+                color:white;
                 border-top-right-radius: 20px;
                 border-bottom-right-radius: 20px;
 }
@@ -144,6 +254,7 @@ form {
 
 .search {
   display: inline-block;
+  background: green;
 }
 
 .search-icon {
