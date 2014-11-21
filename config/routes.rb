@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   delete  "/users/signout",           to: "sessions#destroy", as: :signout
 
+######### instagram
 
+  get     "/instagram/search/:results",        to: "home#instagram_search", as: :instagram_results
   # get     "/users/:current_user/feed",          to: "feed#show",        as: :feed
 
   # post  "/auth/:provider/callback",    to: "users#create", as:   :user_create
