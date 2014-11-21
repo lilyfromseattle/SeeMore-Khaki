@@ -7,14 +7,13 @@ class TwitterHelper
     @posts = []
     @client = client
     @search_results = search_results
-    # @author.class == Author ? @avatar = "blah" :
-    query_for_author
+    @author.class == Author ? @avatar = @author.avatar : query_for_author
   end
 
   def query_for_posts
     puts"****YES WE ARE*******"
     puts "*****FOURRRRR!!!*********************"
-    client = Twitter::REST::Client.new do |config|
+    @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TWITTER_API_KEY"]
       config.consumer_secret     = ENV["TWITTER_API_SECRET"]
       config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
@@ -22,7 +21,7 @@ class TwitterHelper
     end
 
 
-    @api_data = client.user_search(@author)
+    @api_data = @client.user_search(@author)
     puts "*****FIVE*********************"
 
     parse_api
@@ -32,12 +31,13 @@ class TwitterHelper
     puts "*****SIX*********************"
 
 
-    @api_data.each do |post|
-      @posts << {
-
-      author: post["user"],
-      text: post["text"],
-      timestamp: post["created_at"] }
+    @api_data.each_with_index do |post, i|
+      @posts << []
+      # avatar = post.profile_image_url
+      @posts[i] << author = post.user
+      @posts[i] << text = post.text
+      @posts[i] << timestamp = post.created_at
+      # image = post.user.image_path
 
     end
   end

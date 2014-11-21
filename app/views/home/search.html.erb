@@ -28,15 +28,15 @@
   </table>
 
 <% elsif params[:service] == "Twitter" %>
-  <h1>Search results for <%= @search_term %> on Instagram</h1>
+  <h1>Search results for <%= @search_term %> on Twtter</h1>
     <table>
       <thead></thead>
       <tbody>
         <% @search_results.each do |result| %>
         <tr>
-          <td><%= result.profile_image_url %>
+          <td><%= image_tag(result.profile_image_url, class: "thumbnail") %>
           <td><%= result.name %></td>
-          <td><%= link_to "Subscribe", "/" %></td>
+          <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
         </tr>
         <% end %>
       </tbody>
