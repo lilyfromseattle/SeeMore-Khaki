@@ -18,6 +18,7 @@ class FeedController < ApplicationController
         z = TwitterHelper.new(author)
         puts "ARE WE QUERYING FOR POSTS?"
         z.query_for_tweets
+        puts "ANSWERS THE QUESTION"
         @posts += z.tweets
       end
     end

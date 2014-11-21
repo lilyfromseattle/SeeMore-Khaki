@@ -10,11 +10,14 @@
         </tr>
 
       <% elsif post[:service] == "Twitter" %>
-        <tr>
-          <td> 
-          <td><%= post[:title] %></td>
-          <td><%= post[:timestamp] %></td>
-        </tr>
+        puts "HELLLLLLLO"
+        <%= post.each do |tweet| %>
+          <%= puts "******POST***#{post.inspect}*******" %>
+          <%= puts "******TWEET***#{tweet.inspect}*******" %>
+          <tr>
+            <td><%= tweet %></td>
+          </tr>
+        <% end %>
       <% else %>
         <tr>
           <td><%= post[:title] %></td>
