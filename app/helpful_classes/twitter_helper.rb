@@ -77,7 +77,7 @@ class TwitterHelper
       end
 
       @search_results = @client.user_search(@author).take(20)
-      puts "********TWO***********"
+      puts "***SEARCHRESULTS*****#{@search_results.first}***********"
       @api_data = @client.user_timeline(@author).take(20)
 
       @api_data.each_with_index do |tweet, i|
