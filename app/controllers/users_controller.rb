@@ -1,19 +1,5 @@
 class UsersController < ApplicationController
 
-  def new
-  end
-
-  def create
-    @user = User.new(auth_hash)
-    raise auth_hash
-    if @user.save
-      session[:current_user] = @user.id
-      redirect_to "/"
-    else
-      render :developer_signin_path
-    end
-  end
-
   def subscribe
     @user = User.find(session[:current_user])
     @author = Author.find(params[:id])
@@ -29,11 +15,33 @@ class UsersController < ApplicationController
 
   end
 
-
+  def instagram_subscribe
+    @user = User.find(session[:current_user])
+    uid = params[:uid]
+    @author = Author.find_by(uid: uid, service: "Instagram")
+    if @author
+      @user.authors << @author
+    else
+      add_instagram_user(uid)
+    end
+  end
 
   private
-    def auth_hash
-      params.require(request.env['omniauth.auth']).permit(:name, :email, :provider, :uid)
+
+    def add_instagram_user(uid)
+      url = "https://api.instagram.com/v1/users/#{uid}?client_id=#{ENV["INSTAGRAM_CLIENT_ID"]}"
+      api_hash = HTTParty.get(url)["data"]
+      author = Author.new({
+        name: api_hash["username"],
+        avatar: api_hash["profile_picture"],
+        uid: api_hash["id"],
+        service: "Instagram"
+        })
+      if author.save
+        @user.authors << author
+      else
+        raise "this is probably instagram's fault"
+      end
     end
 
 end

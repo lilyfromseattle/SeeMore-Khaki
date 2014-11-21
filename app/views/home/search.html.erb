@@ -21,7 +21,7 @@
       <tr>
         <td><%= image_tag(result[:avatar], class: "thumbnail") %>
         <td><%= result[:name] %></td>
-        <td><%= link_to "Subscribe", "/" %></td>
+        <td><%= link_to "Subscribe", instagram_subscribe_path(result[:uid]), :class => "add-author", method: :post %></td>
       </tr>
       <% end %>
     </tbody>
