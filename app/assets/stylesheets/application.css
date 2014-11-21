@@ -21,26 +21,34 @@ body {
   background: white;
 }
 #middle {
-  /*padding: 10px;*/
+  padding: 10px;
+  padding-top: 40px;
+
 }
 
 header h1 {
-  font-size: 4em;
+  font-size: 4.4em;
   display: inline-block;
   color: beige;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 30%;
+  margin-right: 30%;
   /*margin-top: -5px;*/
   font-family: 'Slackey';
+  font-weight: 200;
 }
 
 header #login-stuff {
-  float: right;
+  /*float: right;*/
   font-family: "Indie Flower";
-  margin-top: 15px;
-  margin-right: 15px;
+  /*margin-top: 15px;
+  margin-right: 15px;*/
   display: inline-block;
   width: 140px;
+  z-index: 200;
+  position: absolute;
+  margin-left: -150px;
+  margin-top: 5px;
+
 }
 
 .sign-in {
@@ -48,6 +56,7 @@ header #login-stuff {
   text-decoration: none;
   color: beige;
   padding-bottom: 5px;
+
 }
 
 .sign-in:hover {
@@ -67,8 +76,9 @@ header #login-stuff {
 }
 
 span {
-  /*color: yellowgreen;
-  text-shadow: 1px 1px 2px black;*/
+  font-weight: bold;
+  color: yellowgreen;
+
 }
 
 #monster {
@@ -136,6 +146,7 @@ header {
   /*float: left;*/
   position: fixed;
   margin-top: 10px;
+  z-index: 0;
 }
 .small-circle {
   width: 30px;
@@ -143,10 +154,10 @@ header {
   background: yellowgreen;
   border-radius: 15px;
   margin-left: 50px;
-  margin-top: 50px;
+  margin-top: 55px;
   /*float: left;*/
   position: absolute;
-  z-index: 130;
+  z-index: 0;
 }
 
 .med-circle {
@@ -154,11 +165,15 @@ header {
   height: 40px;
   background: yellowgreen;
   border-radius: 20px;
-  margin-left: 100px;
-  margin-top: 60px;
+  /*margin-left: 100px;
+  margin-top: 60px;*/
   /*float: left;*/
-  position: absolute;
+  /*position: absolute;*/
   z-index: 130;
+  position: fixed;
+  margin-left: -50px;
+  margin-top: 40px;
+  z-index: 50;
 }
 
 .xs-circle {
@@ -166,15 +181,87 @@ header {
   height: 20px;
   background: yellowgreen;
   border-radius: 10px;
-  margin-left: 150px;
-  margin-top: 30px;
+  position: fixed;
+  margin-left: -70px;
+  margin-top: 10px;
+  /*position: fixed;*/
+  /*margin-left: 150px;
+  margin-top: 30px;*/
   /*float: left;*/
-  position: absolute;
-  z-index: 130;
+  /*position: absolute;*/
+  z-index: 0;
 }
 
-#float {
+.eye2 {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background: white;
+  position: absolute;
+  /*margin-left: -200px;*/
+  margin-top: 17px;
+  margin-left: 110px;
+}
+
+.iris2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: lightblue;
+  position: absolute;
+  /*margin-left: -190px;*/
+  margin-top: 35px;
+  z-index: 300;
+  margin-left: 120px;
+}
+.pupil2 {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: black;
+  position: absolute;
+  /*margin-left: -180px;*/
+  margin-top: 52px;
+  z-index: 300;
+  margin-left: 130px;
+}
+
+.eye {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background: white;
+  position: absolute;
+  margin-left: -180px;
+  margin-top: 17px;
+}
+
+.eyelid {
+  background: red;
+
+}
+.iris {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: lightblue;
+  position: absolute;
+  margin-left: -170px;
+  margin-top: 35px;
+}
+.pupil {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: black;
+  position: absolute;
+  margin-left: -160px;
+  margin-top: 52px;
+}
+
+.float {
   float: right;
+  /*z-index: 200;*/
 }
 /*.zigzag {
   position: relative;
@@ -225,7 +312,7 @@ header {
 }*/
 
 form {
-                /*width:500px;*/
+                /*width:auto;*/
                 margin-top: 15px;
                 padding: 0;
                 border-top-right-radius: 20px;
@@ -248,13 +335,23 @@ form {
 }
 
 .button:hover  {
-                background-color:#fafafa;
-                color:#207cca;
+                background-color: beige;
+                color: darkgreen;
 }
 
 .search {
   display: inline-block;
   background: green;
+  width: auto;
+}
+
+.form-stuff {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 243px;
+  /*background: blue;*/
+  display: none;
 }
 
 .search-icon {
@@ -262,7 +359,10 @@ form {
   display: inline-block;
   height: 20px;
   margin-top: -23px;
+  padding: 0;
 }
+
+
 
 .hidden {
   /*display: inline-block;

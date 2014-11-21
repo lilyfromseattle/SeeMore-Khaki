@@ -15,13 +15,22 @@
       <% current_user = session[:current_user] %>
       <div class = "small-circle"></div>
       <div class = "big-circle"></div>
-      <div id = "float">
-      <div class = "med-circle"></div>
-      <div class = "xs-circle"></div>
-    </div>
-      <h1><span>FEED ME!</span></h1>
+      <div class = "eye2"></div>
+      <div class = "iris2"></div>
+      <div class = "pupil2"></div>
+
+
+      <div class = "float">
+        <div class = "eye"></div>
+        <div class = "iris"></div>
+        <div class = "pupil"></div>
+        <div class = "med-circle"></div>
+        <div class = "xs-circle"></div>
+      </div>
+      <h1>feed<span>[</span>me<span>]</span></h1>
       <!-- <div class = "small-circle"></div>
       <div class = "big-circle"></div> -->
+      <div class = "float">
       <div id="login-stuff">
         <% if current_user %>
           <% current_user = User.find(current_user) %>
@@ -38,6 +47,7 @@
         <% end %>
       </div>
     </div>
+    </div>
   </header>
 
   <div class="container2 zigzag"></div>
@@ -50,9 +60,11 @@
     <div class="search-bars">
       <%= form_tag("/home/search", method: "post", class: "search") do %>
       <!-- <div class "hidden"> -->
+      <div class = "form-stuff">
         <%= text_field_tag :search, params[:search], :placeholder => "Vimeo user", class: "text-field" %>
         <%= hidden_field_tag :service, "Vimeo" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
+      </div>
 
         <div class = "search-icon">
           <%= image_tag "vimeo_icon.png", class: "icon" %>
