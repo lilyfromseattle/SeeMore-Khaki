@@ -14,7 +14,10 @@ class HomeController < ApplicationController
 
     elsif params[:service] == "Twitter"
       @author = TwitterHelper.new(params[:search]).author
-
+      twit = TwitterHelper.new(params[:search])
+      @author = twit.author
+      @search_results = twit.search_results
+      
     elsif params[:service] == "GitHub"
       @author = GithubHelper.new(@search_term)
     end

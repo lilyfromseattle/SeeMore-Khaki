@@ -26,4 +26,19 @@
       <% end %>
     </tbody>
   </table>
+
+<% elsif params[:service] == "Twitter" %>
+  <h1>Search results for <%= @search_term %> on Instagram</h1>
+    <table>
+      <thead></thead>
+      <tbody>
+        <% @search_results.each do |result| %>
+        <tr>
+          <td><%= result.profile_image_url %>
+          <td><%= result.name %></td>
+          <td><%= link_to "Subscribe", "/" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 <% end %>
