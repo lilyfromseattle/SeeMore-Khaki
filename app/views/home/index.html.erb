@@ -9,10 +9,10 @@
   <% user = User.find(current_user) %>
   <p>Logged in via <%= user.provider.capitalize %> as <%= user.name %></p>
   <%= link_to "Sign Out", signout_path, {method: "delete"} %>
-  <%= link_to "View Feed", feed_path(current_user) %>
+  <%= link_to "View Feed", feed_path(current_user), class: "sign-in" %>
 
 <% else %>
   <%= link_to "Sign In with Fake Auth", "/auth/developer" %>
-  <%= link_to "Sign In with Instagram", "/auth/instagram" %>
+  <%= link_to "Sign In with Instagram", "/auth/instagram", class: "sign-in" %>
   <%= link_to "Sign In With Twitter", "/auth/twitter" %>
 <% end %>

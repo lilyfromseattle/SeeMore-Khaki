@@ -25,12 +25,13 @@ body {
 }
 
 header h1 {
-  font-size: 7em;
+  font-size: 4em;
   display: inline-block;
-  color: khaki;
-  margin-left: 35%;
-  margin-right: 35%;
-  margin-top: -7px;
+  color: beige;
+  margin-left: 20%;
+  margin-right: 20%;
+  /*margin-top: -5px;*/
+  font-family: 'Slackey';
 }
 
 header #login-stuff {
@@ -39,7 +40,23 @@ header #login-stuff {
   margin-top: 15px;
   margin-right: 15px;
   display: inline-block;
+  width: 140px;
 }
+
+.sign-in {
+  display: inline-block;
+  text-decoration: none;
+  color: beige;
+  padding-bottom: 5px;
+}
+
+.sign-in:hover {
+  text-decoration: none;
+  text-shadow: 2px 2px 2px black;
+  color: beige;
+}
+
+
 
 .icon {
   margin-left: 5
@@ -108,6 +125,56 @@ header {
      linear-gradient( -55deg, transparent 33.333%, white 33.333%,
        white 66.667%, transparent 66.667% );
   background-size: 40px 80px;
+}
+
+.big-circle {
+  width: 50px;
+  height: 50px;
+  background: yellowgreen;
+  border-radius: 25px;
+  margin-left: 10px;
+  /*float: left;*/
+  position: fixed;
+  margin-top: 10px;
+}
+.small-circle {
+  width: 30px;
+  height: 30px;
+  background: yellowgreen;
+  border-radius: 15px;
+  margin-left: 50px;
+  margin-top: 50px;
+  /*float: left;*/
+  position: absolute;
+  z-index: 130;
+}
+
+.med-circle {
+  width: 40px;
+  height: 40px;
+  background: yellowgreen;
+  border-radius: 20px;
+  margin-left: 100px;
+  margin-top: 60px;
+  /*float: left;*/
+  position: absolute;
+  z-index: 130;
+}
+
+.xs-circle {
+  width: 20px;
+  height: 20px;
+  background: yellowgreen;
+  border-radius: 10px;
+  margin-left: 150px;
+  margin-top: 30px;
+  /*float: left;*/
+  position: absolute;
+  z-index: 130;
+}
+
+#float {
+  float: right;
 }
 /*.zigzag {
   position: relative;
