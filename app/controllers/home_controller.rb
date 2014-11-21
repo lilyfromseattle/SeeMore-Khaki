@@ -10,6 +10,8 @@ class HomeController < ApplicationController
       @search_term = params[:search]
       @ig_hash = InstagramHelper.new(@search_term)
       @search_results = @ig_hash.results_array
+    elsif params[:service] == "Twitter"
+      @author = TwitterHelper.new(params[:search]).author
     end
   end
 

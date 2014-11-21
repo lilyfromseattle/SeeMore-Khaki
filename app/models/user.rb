@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # has_and_belongs_to_many :authors
 
 
-## email is not sent with all APIs
+  ## email is not sent with all APIs
   # validates :email, presence: true
   validates :name, presence: true
   validates :uid, presence: true

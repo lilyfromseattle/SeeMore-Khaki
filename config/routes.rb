@@ -3,10 +3,17 @@ Rails.application.routes.draw do
 
   root    "home#index"
 
+
+  get     "/auth/developer",          to: "sessions#new",     as: :developer_signin
+  get     "/auth/:provider",          to: "sessions#new",     as: :signin
+
+  get    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
+  post    "/auth/:provider/callback", to: "sessions#create"
+  # get     "/auth/:provider/callback", to: "sessions#create",  as: :sessions
+  # post    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
+
 ######### authorization
 
-  get     "/auth/:provider/callback", to: "sessions#create",  as: :sessions
-  post    "/auth/:provider/callback", to: "sessions#create"
   delete  "/users/signout",           to: "sessions#destroy", as: :signout
 
 ######### instagram
