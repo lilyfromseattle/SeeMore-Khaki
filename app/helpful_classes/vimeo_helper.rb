@@ -16,6 +16,7 @@ class VimeoHelper
     @api_data.each do |vid|
       @avatar ||= vid["user_portrait_medium"]
       @videos << {
+      service: "Vimeo",
       title: vid["title"],
       content: vid["url"],
       timestamp: vid["upload_date"] }
@@ -43,7 +44,11 @@ class VimeoHelper
       puts "THe database stuff happened"
     else
       puts "Looking for API data"
-      @api_data = Vimeo::Simple::User.info(@author).parsed_response
+      if /\s/.match(@author)
+        @api_data = "That is not a valid username."
+      else
+        @api_data = Vimeo::Simple::User.info(@author).parsed_response
+      end
     end
   end
 
