@@ -1,5 +1,5 @@
 class VimeoHelper
-  attr_accessor :author
+  attr_accessor :author, :videos
   def initialize author
     @author = author
     @api_data = ""
