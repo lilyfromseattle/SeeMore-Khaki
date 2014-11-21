@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Quicksand|Amatic+SC|Indie+Flower' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -12,21 +13,28 @@
   <header>
     <div class="inside-header">
       <% current_user = session[:current_user] %>
-
-      <h1><span>FEED ME</span></h1>
-
+      <div class = "small-circle"></div>
+      <div class = "big-circle"></div>
+      <div id = "float">
+      <div class = "med-circle"></div>
+      <div class = "xs-circle"></div>
+    </div>
+      <h1><span>FEED ME!</span></h1>
+      <!-- <div class = "small-circle"></div>
+      <div class = "big-circle"></div> -->
       <div id="login-stuff">
         <% if current_user %>
           <% current_user = User.find(current_user) %>
           Logged in as <%= current_user.name %> via <%= current_user.provider.capitalize %><br>
           <%= link_to "Sign Out", signout_path, {method: "delete"} %><br>
           <%= link_to "View Feed", feed_path(current_user) %>
-
         <% else %>
-          <%= link_to "Sign In with Fake Auth", "/auth/developer" %>
-          <%= link_to "Sign In with Instagram", "/auth/instagram" %>
-          <%= link_to "Sign In with Twitter", "/auth/twitter" %>
-          <%= link_to "Sign In with GitHub", "/auth/github" %>
+
+          <%= link_to "Sign In with Fake Auth", "/auth/developer", class: "sign-in" %>
+          <%= link_to "Sign In with Instagram", "/auth/instagram", class: "sign-in" %>
+          <%= link_to "Sign In With Twitter", "/auth/twitter", class: "sign-in" %>
+          <%= link_to "Sign In with GitHub", "/auth/github", class: "sign-in" %>
+
         <% end %>
       </div>
     </div>
