@@ -110,3 +110,8 @@ form {
   background: pink;
   height: 30px;
 }*/
+
+.thumbnail {
+  width: 75px;
+  height: 75px;
+}

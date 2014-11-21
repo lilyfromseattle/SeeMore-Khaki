@@ -19,4 +19,8 @@ class InstagramHelper
       }
     end
   end
+
+  def subscribe(author)
+    Author.new(name: author.name, service: author.service)
+  end
 end

@@ -1,10 +1,27 @@
-<h1>Search Results</h1>
-<thead></thead>
-<tbody>
-<% @search_results.each do |result| %>
-  <tr>
-    <td><%= result[:service] %>
-    <td><%= result[:name] %></td>
-  <tr>
+<!-- we could/should break these into partials  -->
+<% if params[:service] == "Vimeo" %>
+  <h1>Search Results</h1>
+  <thead></thead>
+  <tbody>
+    <tr>
+      <td><%= @author.service %></td>
+      <td><%= @author.name %></td>
+      <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
+    </tr>
+  </tbody>
+
+<% elsif params[:service] == "Instagram" %>
+  <h1>Search results for <%= @search_term %> on Instagram</h1>
+  <table>
+    <thead></thead>
+    <tbody>
+      <% @search_results.each do |result| %>
+      <tr>
+        <td><%= image_tag(result[:avatar], class: "thumbnail") %>
+        <td><%= result[:name] %></td>
+        <td><%= link_to "Subscribe", "/" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-</tbody>

@@ -9,6 +9,7 @@ class VimeoHelper
 
   def query_for_vids
     @api_data = Vimeo::Simple::User.videos(@author.name).parsed_response
+    parse_api
   end
 
   def parse_api
