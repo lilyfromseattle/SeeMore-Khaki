@@ -3,12 +3,20 @@
   <thead></thead>
   <tbody>
     <% @posts.each do |post| %>
-    <tr>
-      <td><%= post[:title] %></td>
-      <td><%= post[:content] %></td>
-      <td><%= post[:timestamp] %></td>
-      <td></td>
-    </tr>
+      <% if post.service == "Vimeo" %>
+        <tr>
+          <td><%= post[:title] %></td>
+          #EMBED VIDEO HERE
+          <td><%= post[:timestamp] %>
+        </tr>
+      <% else %>
+        <tr>
+          <td><%= post[:title] %></td>
+          <td><%= post[:content] %></td>
+          <td><%= post[:timestamp] %></td>
+          <td></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
   </body>
