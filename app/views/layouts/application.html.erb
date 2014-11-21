@@ -12,7 +12,7 @@
   <header>
     <div class="inside-header">
       <% current_user = session[:current_user] %>
-      <%= image_tag("monster.jpg", :id => "monster") %>
+
       <h1><span>FEED ME</span></h1>
 
       <div id="login-stuff">
@@ -29,9 +29,7 @@
       </div>
     </div>
   </header>
-  <div class="below-header zigzag">
-
-  </div>
+  <div class="container2 zigzag"></div>
 
 
   <% if session[:current_user] %>
