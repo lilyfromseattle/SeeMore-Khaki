@@ -14,6 +14,7 @@
  *= require_self
  */
 
+
 body {
   /*padding: 0;
   margin: 0;*/
@@ -21,27 +22,44 @@ body {
   background: white;
 }
 #middle {
+<<<<<<< HEAD
+  /*padding: 10px;
+  padding-top: 40px;*/
+
+  /*position: fixed;*/
+
+  position: relative;
   /*padding: 10px;*/
+
+  margin-top: 200px;
+  margin-left: 400px;*/
 }
 
 header { display: none; }
 header h1 {
-  font-size: 4em;
+  font-size: 4.4em;
   display: inline-block;
   color: beige;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 30%;
+  margin-right: 30%;
   /*margin-top: -5px;*/
   font-family: 'Slackey';
+  font-weight: 200;
 }
 
 header #login-stuff {
-  float: right;
+  /*float: right;*/
   font-family: "Indie Flower";
-  margin-top: 15px;
-  margin-right: 15px;
+  /*margin-top: 15px;
+  margin-right: 15px;*/
   display: inline-block;
   width: 140px;
+  z-index: 200;
+  position: absolute;
+  margin-left: -150px;
+  margin-top: 5px;
+  background: red;
+
 }
 
 .sign-in {
@@ -49,6 +67,7 @@ header #login-stuff {
   text-decoration: none;
   color: beige;
   padding-bottom: 5px;
+
 }
 
 .sign-in:hover {
@@ -68,8 +87,9 @@ header #login-stuff {
 }
 
 span {
-  /*color: yellowgreen;
-  text-shadow: 1px 1px 2px black;*/
+  font-weight: bold;
+  color: yellowgreen;
+
 }
 
 #monster {
@@ -86,12 +106,14 @@ header, footer {
 }
 
 header {
-  position: absolute;
-  width: 100%;
-  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
   height: 130px;
   /*padding: 10px;*/
   background: khaki;
+  z-index: 400;
 }
 
 .inside-header {
@@ -100,24 +122,27 @@ header {
 }
 
 .zigzag {
-  position: relative;
-  width: 100%;
+  position: fixed;
+  top: 109px;
+  left: 0;
+  right: 0;
   height: 200px;
 }
 
 .zigzag:before {
   content: "";
   display: block;
-  position: absolute;
-  top: -10px;
-  width: 100%;
+  top: 109px;
+  left: 0;
+  right: 0;
   height: 20px;
 }
 
 .container2 {
   color: red;
-  margin-top: 120px;
-  position: absolute;
+  top: 110px;
+  position: fixed;
+  z-index: 500;
 }
 
 .container2:before {
@@ -137,6 +162,7 @@ header {
   /*float: left;*/
   position: fixed;
   margin-top: 10px;
+  z-index: 0;
 }
 .small-circle {
   width: 30px;
@@ -144,10 +170,10 @@ header {
   background: yellowgreen;
   border-radius: 15px;
   margin-left: 50px;
-  margin-top: 50px;
+  margin-top: 55px;
   /*float: left;*/
   position: absolute;
-  z-index: 130;
+  z-index: 0;
 }
 
 .med-circle {
@@ -155,11 +181,15 @@ header {
   height: 40px;
   background: yellowgreen;
   border-radius: 20px;
-  margin-left: 100px;
-  margin-top: 60px;
+  /*margin-left: 100px;
+  margin-top: 60px;*/
   /*float: left;*/
-  position: absolute;
+  /*position: absolute;*/
   z-index: 130;
+  position: fixed;
+  margin-left: -50px;
+  margin-top: 40px;
+  z-index: 50;
 }
 
 .xs-circle {
@@ -167,22 +197,93 @@ header {
   height: 20px;
   background: yellowgreen;
   border-radius: 10px;
-  margin-left: 150px;
-  margin-top: 30px;
+  position: fixed;
+  margin-left: -70px;
+  margin-top: 10px;
+  /*position: fixed;*/
+  /*margin-left: 150px;
+  margin-top: 30px;*/
   /*float: left;*/
-  position: absolute;
-  z-index: 130;
+  /*position: absolute;*/
+  z-index: 0;
 }
 
-#float {
+.eye2 {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background: white;
+  position: absolute;
+  /*margin-left: -200px;*/
+  margin-top: 17px;
+  margin-left: 110px;
+}
+
+.iris2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: lightblue;
+  position: absolute;
+  /*margin-left: -190px;*/
+  margin-top: 35px;
+  z-index: 300;
+  margin-left: 120px;
+}
+.pupil2 {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: black;
+  position: absolute;
+  /*margin-left: -180px;*/
+  margin-top: 52px;
+  z-index: 300;
+  margin-left: 130px;
+}
+
+.eye {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background: white;
+  position: absolute;
+  margin-left: -180px;
+  margin-top: 17px;
+}
+
+.eyelid {
+  background: red;
+
+}
+.iris {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: lightblue;
+  position: absolute;
+  margin-left: -170px;
+  margin-top: 35px;
+}
+.pupil {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: black;
+  position: absolute;
+  margin-left: -160px;
+  margin-top: 52px;
+}
+
+.float {
   float: right;
+  /*z-index: 200;*/
 }
 /*.zigzag {
   position: relative;
   width: 100%;
   height: 200px;
 }
-
 .zigzag:before {
   content: "";
   display: block;
@@ -190,25 +291,18 @@ header {
   top: -10px;
   width: 100%;
   height: 20px;
-
 }
-
 .inside-header {
   background-color: green;
   height: 100px;
 }
-
 .below-header {
   background: red;
   height: 4px;
   position: fixed;
   z-index: 110;
   margin-top: 130px;
-
 }
-
-
-
 .below-header:before {
   background:
     linear-gradient(
@@ -222,11 +316,10 @@ header {
       transparent 66.667%
       );
   background-size: 40px 80px;
-
 }*/
 
 form {
-                /*width:500px;*/
+                /*width:auto;*/
                 margin-top: 15px;
                 padding: 0;
                 border-top-right-radius: 20px;
@@ -249,13 +342,23 @@ form {
 }
 
 .button:hover  {
-                background-color:#fafafa;
-                color:#207cca;
+                background-color: beige;
+                color: darkgreen;
 }
 
 .search {
   display: inline-block;
   background: green;
+  width: auto;
+}
+
+.form-stuff {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 243px;
+  /*background: blue;*/
+  display: none;
 }
 
 .search-icon {
@@ -263,7 +366,10 @@ form {
   display: inline-block;
   height: 20px;
   margin-top: -23px;
+  padding: 0;
 }
+
+
 
 .hidden {
   /*display: inline-block;
