@@ -17,7 +17,8 @@
 
       <div id="login-stuff">
         <% if current_user %>
-          Logged in as <%= User.find(current_user).name %><br>
+          <% current_user = User.find(current_user) %>
+          Logged in as <%= current_user.name %> via <%= current_user.provider.capitalize %><br>
           <%= link_to "Sign Out", signout_path, {method: "delete"} %><br>
           <%= link_to "View Feed", feed_path(current_user) %>
 
@@ -41,7 +42,7 @@
     <div class="search-bars">
       <%= form_tag("/home/search", method: "post", class: "search") do %>
       <!-- <div class "hidden"> -->
-        <%= text_field_tag :search, params[:search], :placeholder => "user", class: "text-field" %>
+        <%= text_field_tag :search, params[:search], :placeholder => "Vimeo user", class: "text-field" %>
         <%= hidden_field_tag :service, "Vimeo" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
 
@@ -54,7 +55,7 @@
 
     <!-- TWITTER FORM: -->
       <%= form_tag("/home/search", method: "post", class: "search") do %>
-        <%= text_field_tag :search, params[:search], :placeholder => "user", class: "text-field" %>
+        <%= text_field_tag :search, params[:search], :placeholder => "Twitter user", class: "text-field" %>
         <%= hidden_field_tag :service, "Twitter" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
 
@@ -64,19 +65,11 @@
           <span class="sr-only">Twitter Icon</span>
         </div>
       <% end %>
-      <%= form_tag("/home/search", method: "post", class: "search") do %>
-        <%= text_field_tag :search, params[:search], :placeholder => "user", :class => "text-field" %>
-        <%= hidden_field_tag :service, "Instagram" %>
-        <%= submit_tag "Search", :name => nil, :class => "button" %>
-        <div class = "search-icon">Instagram</div>
-        <% end %>
-      <!-- <div class = "search-icon">Vimeo</div> -->
-    <!-- </div> -->
 
 
     <!-- INSTAGRAM FORM: -->
       <%= form_tag("/home/search", method: "post", class: "search") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "user", class: "text-field" %>
+        <%= text_field_tag :search, params[:search], placeholder: "Instagram user", class: "text-field" %>
         <%= hidden_field_tag :service, "Instagram" %>
         <%= submit_tag "Search", name: nil, class: "button" %>
 
@@ -88,7 +81,7 @@
 
       <!-- GITHUB FORM -->
         <%= form_tag("/home/search", method: "post", class: "search") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "user", class: "text-field" %>
+          <%= text_field_tag :search, params[:search], placeholder: "Github user", class: "text-field" %>
           <%= hidden_field_tag :service, "Github" %>
           <%= submit_tag "Search", name: nil, class: "button" %>
 
