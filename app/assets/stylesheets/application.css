@@ -93,7 +93,7 @@ header .inside-header {
 }
 
 .zigzag:before {
-  content: "",
+  content: "";
   display: block;
   position: absolute;
   top: -10px;
@@ -136,7 +136,7 @@ form {
                 border-top-right-radius: 20px;
                 border-bottom-right-radius: 20px;
 }
-}
+
 .button:hover  {
                 background-color:#fafafa;
                 color:#207cca;
@@ -179,4 +179,9 @@ form {
   border-bottom-left-radius: 20px;
   border: none;
   height: 26px;
+}
+
+.thumbnail {
+  width: 75px;
+  height: 75px;
 }

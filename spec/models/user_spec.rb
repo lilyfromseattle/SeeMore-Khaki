@@ -12,7 +12,7 @@ let(:user) { User.new(
     it "is valid" do
       expect(user).to be_valid
     end
-
+##### commented out because not all APIs return email address
     # it "requires an email" do
     #   user.email = nil
     #   expect(user).to be_invalid
