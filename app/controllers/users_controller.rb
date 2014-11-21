@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     else
       add_instagram_user(uid)
     end
+    redirect_to "/users/#{@user.id}/feed"
   end
 
   private
