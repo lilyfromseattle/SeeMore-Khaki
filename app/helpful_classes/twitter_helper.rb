@@ -65,6 +65,7 @@ class TwitterHelper
   end
 
   def db_or_api
+    puts "********ONE***********"
     if Author.find_by(name: @author, service: "Twitter")
       @author = Author.find_by(name: @author, service: "Twitter")
     else
@@ -75,9 +76,9 @@ class TwitterHelper
         config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
       end
 
-      @search_results = client.user_search(@author).take(20)
-
-      @api_data = client.user_timeline(@author).take(20)
+      @search_results = @client.user_search(@author).take(20)
+      puts "********TWO***********"
+      @api_data = @client.user_timeline(@author).take(20)
 
       @api_data.each_with_index do |tweet, i|
         @tweets << []
@@ -89,7 +90,7 @@ class TwitterHelper
 
       end
       # .hashtags.each.text => [#<Twitter::Entity::Hashtag:0x007fea752a9420 @attrs={:text=>"WHD2013", :indices=>[17, 25]}>, #<Twitter::Entity::Hashtag:0x007fea752a93a8 @attrs={:text=>"EveryMileMatters", :indices=>[108, 125]}>, #<Twitter::Entity::Hashtag:0x007fea752a91c8 @attrs={:text=>"BeyGood", :indices=>[126, 134]}>]
-
+      puts "********THREE***********"
     end
 
 
