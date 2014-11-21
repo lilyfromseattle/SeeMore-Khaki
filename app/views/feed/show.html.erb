@@ -1,13 +1,12 @@
-<h1>I'm a show page.</h1>
-
-  <thead></thead>
+<table
+<thead></thead>
   <tbody>
     <% @posts.each do |post| %>
-      <% if post.service == "Vimeo" %>
+      <% if post[:service] == "Vimeo" %>
         <tr>
+          <td><iframe src="//player.vimeo.com/video/<%= post[:content] %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></td>
           <td><%= post[:title] %></td>
-          #EMBED VIDEO HERE
-          <td><%= post[:timestamp] %>
+          <td><%= post[:timestamp] %></td>
         </tr>
       <% else %>
         <tr>
@@ -19,4 +18,4 @@
       <% end %>
     <% end %>
   </tbody>
-  </body>
+</table

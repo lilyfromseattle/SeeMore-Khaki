@@ -22,10 +22,15 @@ body {
   background: white;
 }
 #middle {
-  padding: 10px;
-  padding-top: 40px;
+<<<<<<< HEAD
+  /*padding: 10px;
+  padding-top: 40px;*/
 
-  /*position: fixed;
+  /*position: fixed;*/
+
+  position: relative;
+  /*padding: 10px;*/
+
   margin-top: 200px;
   margin-left: 400px;*/
 }
@@ -52,6 +57,7 @@ header #login-stuff {
   position: absolute;
   margin-left: -150px;
   margin-top: 5px;
+  background: red;
 
 }
 
@@ -99,12 +105,14 @@ header, footer {
 }
 
 header {
-  position: absolute;
-  width: 100%;
-  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
   height: 130px;
   /*padding: 10px;*/
   background: khaki;
+  z-index: 400;
 }
 
 .inside-header {
@@ -113,24 +121,27 @@ header {
 }
 
 .zigzag {
-  position: relative;
-  width: 100%;
+  position: fixed;
+  top: 109px;
+  left: 0;
+  right: 0;
   height: 200px;
 }
 
 .zigzag:before {
   content: "";
   display: block;
-  position: absolute;
-  top: -10px;
-  width: 100%;
+  top: 109px;
+  left: 0;
+  right: 0;
   height: 20px;
 }
 
 .container2 {
   color: red;
-  margin-top: 120px;
-  position: absolute;
+  top: 110px;
+  position: fixed;
+  z-index: 500;
 }
 
 .container2:before {
