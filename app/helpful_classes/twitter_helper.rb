@@ -9,6 +9,7 @@ class TwitterHelper
   end
 
   def query_for_posts
+    puts"****YES WE ARE*******"
     puts "*****FOURRRRR!!!*********************"
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TWITTER_API_KEY"]
@@ -36,12 +37,10 @@ class TwitterHelper
   end
 
   def query_for_author
-    puts "**************#{@author.inspect}"
+    puts "*******AUTHOR:*******#{@author.inspect}*******"
     db_or_api
     # The above method searches the db for the author,
     # does api query if author isn't in db
-    puts "*****TWO**********************"
-    puts "******INSPECT OBJ*****#{@api_data.inspect}****************"
     if @author.class == Author
       puts "*****WRONG OPTION*********************"
       @author
@@ -50,6 +49,7 @@ class TwitterHelper
       new_author = Author.new(name: @author, service: "Twitter")
       new_author.save
       @author = new_author
+      puts "*****FOUR*********************"
     # else
     #   puts "*****FOURTH OPTION*********************"
 
@@ -57,7 +57,7 @@ class TwitterHelper
   end
 
   def db_or_api
-    puts "*****ONE********DB OR ABP ##**************"
+    puts "*****ONE*********************"
     if Author.find_by(name: @author, service: "Twitter")
       @author = Author.find_by(name: @author, service: "Twitter")
       puts "THe database stuff happened"
@@ -73,10 +73,9 @@ class TwitterHelper
 
 
 
-      puts "*****ONE.TWO*******************"
+      puts "*****TWO*******************"
       @api_data = client.user_search(@author, lang:'en').take(1)
-      puts "*****gets Client*************"
-      puts "****#{@api_data.inspect}*************"
+      puts "**API DATA: ****#{@api_data.inspect}*************"
       # @api_data.
     end
 

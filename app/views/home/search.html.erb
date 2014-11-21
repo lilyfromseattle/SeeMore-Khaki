@@ -1,11 +1,43 @@
-<h1>Search Results</h1>
-<thead></thead>
-<tbody>
+<% if params[:service] == "Vimeo" %>
+  <h1>Search Results</h1>
+  <% if @author.class == String %>
+    <%= @author %>
+  <% else %>
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td><%= @author.service %></td>
+        <td><%= @author.name %></td>
+        <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
+      </tr>
+  <% end %>
+<% elsif params[:service] == "Instagram" %>
+  <h1>Search results for <%= @search_term %> on Instagram</h1>
+  <table>
+  <thead></thead>
+  <tbody>
+  <% @search_results.each do |result| %>
   <tr>
-    raise @author
-    <td><%= @author.service %></td>
-    <td><%= @author.name %></td>
-    <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
-  </tr>
+    <td><%= image_tag(result[:avatar], class: "thumbnail") %>
+    <td><%= result[:name] %></td>
+    <td><%= link_to "Subscribe", "/" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
-</tbody>
+<% elsif params[:service] == "Instagram" %>
+  <h1>Search results for <%= @search_term %> on Instagram</h1>
+  <table>
+    <thead></thead>
+    <tbody>
+      <% @search_results.each do |result| %>
+      <tr>
+        <td><%= image_tag(result[:avatar], class: "thumbnail") %>
+        <td><%= result[:name] %></td>
+        <td><%= link_to "Subscribe", "/" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
