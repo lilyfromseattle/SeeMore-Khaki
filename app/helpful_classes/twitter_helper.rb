@@ -1,11 +1,14 @@
 require 'httparty'
 class TwitterHelper
-  attr_accessor :author, :posts
+  attr_accessor :author, :posts, :client, :search_results
   def initialize author
     @author = author
     @api_data = []
     @posts = []
-    @author.class == Author ? @avatar = "blah" : query_for_author
+    @client = client
+    @search_results = search_results
+    # @author.class == Author ? @avatar = "blah" :
+    query_for_author
   end
 
   def query_for_posts
@@ -40,7 +43,7 @@ class TwitterHelper
   end
 
   def query_for_author
-    puts "*******AUTHOR:*******#{@author.inspect}*******"
+    puts "*******ONE******"
     db_or_api
     # The above method searches the db for the author,
     # does api query if author isn't in db
@@ -60,19 +63,21 @@ class TwitterHelper
   end
 
   def db_or_api
+    puts "*******TWO*********"
+
     if Author.find_by(name: @author, service: "Twitter")
       @author = Author.find_by(name: @author, service: "Twitter")
       puts "THe database stuff happened"
     else
-      puts "Looking for API data"
-
-      client = Twitter::REST::Client.new do |config|
+      puts "*******THREE***********"
+      @client = Twitter::REST::Client.new do |config|
         config.consumer_key        = ENV["TWITTER_API_KEY"]
         config.consumer_secret     = ENV["TWITTER_API_SECRET"]
         config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
         config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
       end
 
+      @search_results = client.user_search(@author).take(20)
 
       @api_data = client.user_timeline(@author).take(20)
       # @api_data.each_with_index do |post, i|
