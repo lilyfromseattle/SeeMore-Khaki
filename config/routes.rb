@@ -4,24 +4,22 @@ Rails.application.routes.draw do
   root    "home#index"
 
 
-  get     "/auth/developer",          to: "sessions#new",     as: :developer_signin
-  get     "/auth/:provider",          to: "sessions#new",     as: :signin
-
-  get    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
-  post    "/auth/:provider/callback", to: "sessions#create"
-  # get     "/auth/:provider/callback", to: "sessions#create",  as: :sessions
-  # post    "/auth/:provider/callback", to: "sessions#create",  as: :sessions
-
 ######### authorization
 
-  delete  "/users/signout",           to: "sessions#destroy", as: :signout
+  get     "/auth/:provider",            to: "sessions#new",     as: :signin
+
+  get     "/auth/:provider/callback",   to: "sessions#create",  as: :sessions
+  post    "/auth/:provider/callback",   to: "sessions#create"
+
+  delete  "/users/signout",             to: "sessions#destroy", as: :signout
 
 ######### instagram
 
-  get     "/instagram/search/:results",        to: "home#instagram_search", as: :instagram_results
-  # get     "/users/:current_user/feed",          to: "feed#show",        as: :feed
+  get     "/instagram/search/:results", to: "home#instagram_search", as: :instagram_results
+  post    "/instagram/subscribe/:uid",  to: "users#instagram_subscribe", as: :instagram_subscribe
 
-  # post  "/auth/:provider/callback",    to: "users#create", as:   :user_create
+
+  # get     "/users/:current_user/feed",          to: "feed#show",        as: :feed
 
   get     "/users/:id/feed",          to: "feed#show",        as: :feed
 
