@@ -89,9 +89,10 @@ header, footer {
 }
 
 header {
-  position: absolute;
-  width: 100%;
-  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
   height: 130px;
   /*padding: 10px;*/
   background: khaki;
@@ -103,24 +104,26 @@ header {
 }
 
 .zigzag {
-  position: relative;
-  width: 100%;
+  position: fixed;
+  top: 109px;
+  left: 0;
+  right: 0;
   height: 200px;
 }
 
 .zigzag:before {
   content: "";
   display: block;
-  position: absolute;
-  top: -10px;
-  width: 100%;
+  top: 109px;
+  left: 0;
+  right: 0;
   height: 20px;
 }
 
 .container2 {
   color: red;
-  margin-top: 120px;
-  position: absolute;
+  top: 110px;
+  position: fixed;
 }
 
 .container2:before {
