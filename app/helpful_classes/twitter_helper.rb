@@ -1,16 +1,16 @@
 require 'httparty'
 class TwitterHelper
-  attr_accessor :author, :posts, :client, :search_results
+  attr_accessor :author, :tweets, :client, :search_results
   def initialize author
     @author = author
     @api_data = []
-    @posts = []
+    @tweets = []
     @client = client
     @search_results = search_results
     @author.class == Author ? @avatar = @author.avatar : query_for_author
   end
 
-  def query_for_posts
+  def query_for_tweets
     puts"****YES WE ARE*******"
     puts "*****FOURRRRR!!!*********************"
     @client = Twitter::REST::Client.new do |config|
@@ -31,13 +31,13 @@ class TwitterHelper
     puts "*****SIX*********************"
 
 
-    @api_data.each_with_index do |post, i|
-      @posts << []
-      # avatar = post.profile_image_url
-      @posts[i] << author = post.user
-      @posts[i] << text = post.text
-      @posts[i] << timestamp = post.created_at
-      # image = post.user.image_path
+    @api_data.each_with_index do |tweet, i|
+      @tweets << []
+      # avatar = tweet.profile_image_url
+      @tweets[i] << author = tweet.user
+      @tweets[i] << text = tweet.text
+      @tweets[i] << timestamp = tweet.created_at
+      # image = tweet.user.image_path
 
     end
   end
@@ -80,23 +80,23 @@ class TwitterHelper
       @search_results = client.user_search(@author).take(20)
 
       @api_data = client.user_timeline(@author).take(20)
-      # @api_data.each_with_index do |post, i|
-      #   @posts << []
-      #   # avatar = post.profile_image_url
-      #   @posts[i] << author = post.user
-      #   @posts[i] << text = post.text
-      #   @posts[i] << timestamp = post.created_at
-      #   # image = post.user.image_path
+      # @api_data.each_with_index do |tweet, i|
+      #   @tweets << []
+      #   # avatar = tweet.profile_image_url
+      #   @tweets[i] << author = tweet.user
+      #   @tweets[i] << text = tweet.text
+      #   @tweets[i] << timestamp = tweet.created_at
+      #   # image = tweet.user.image_path
       #
       # end
 
-      @api_data.each_with_index do |post, i|
-        @posts << []
-        # avatar = post.profile_image_url
-        @posts[i] << author = post.user
-        @posts[i] << text = post.text
-        @posts[i] << timestamp = post.created_at
-        # image = post.user.image_path
+      @api_data.each_with_index do |tweet, i|
+        @tweets << []
+        # avatar = tweet.profile_image_url
+        @tweets[i] << author = tweet.user
+        @tweets[i] << text = tweet.text
+        @tweets[i] << timestamp = tweet.created_at
+        # image = tweet.user.image_path
 
       end
 
@@ -105,7 +105,7 @@ class TwitterHelper
 
 
 
-      puts "**POSTS: ****#{@posts.each do |post| puts post end}*************"
+      puts "**tweets: ****#{@tweets.each do |tweet| puts tweet end}*************"
       # @api_data.
     end
 

@@ -15,10 +15,11 @@ class VimeoHelper
   def parse_api
     @api_data.each do |vid|
       @avatar ||= vid["user_portrait_medium"]
+      puts vid["url"]
       @videos << {
       service: "Vimeo",
       title: vid["title"],
-      content: vid["url"],
+      content: /\d+/.match(vid["url"]),
       timestamp: vid["upload_date"] }
     end
   end

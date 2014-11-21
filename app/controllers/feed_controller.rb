@@ -17,8 +17,8 @@ class FeedController < ApplicationController
       elsif author.service == "Twitter"
         z = TwitterHelper.new(author)
         puts "ARE WE QUERYING FOR POSTS?"
-        z.query_for_posts
-        @posts += z.posts
+        z.query_for_tweets
+        @posts += z.tweets
       end
     end
     @posts.sort_by! { |post| DateTime.parse(post[:timestamp]) }
