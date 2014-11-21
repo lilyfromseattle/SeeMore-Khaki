@@ -19,7 +19,7 @@ class TwitterHelper
     end
 
 
-    @api_data = client.user_search(@author, lang:'en').take(1)
+    @api_data = client.user_search(@author)
     puts "*****FIVE*********************"
 
     parse_api
@@ -27,12 +27,15 @@ class TwitterHelper
 
   def parse_api
     puts "*****SIX*********************"
+
+
     @api_data.each do |post|
-      @avatar ||= post["user_portrait_medium"]
       @posts << {
-      title: post["title"],
-      content: post["url"],
-      timestamp: post["upload_date"] }
+
+      author: post["user"],
+      text: post["text"],
+      timestamp: post["created_at"] }
+
     end
   end
 
@@ -57,7 +60,6 @@ class TwitterHelper
   end
 
   def db_or_api
-    puts "*****ONE*********************"
     if Author.find_by(name: @author, service: "Twitter")
       @author = Author.find_by(name: @author, service: "Twitter")
       puts "THe database stuff happened"
@@ -72,10 +74,33 @@ class TwitterHelper
       end
 
 
+      @api_data = client.user_timeline(@author).take(20)
+      # @api_data.each_with_index do |post, i|
+      #   @posts << []
+      #   # avatar = post.profile_image_url
+      #   @posts[i] << author = post.user
+      #   @posts[i] << text = post.text
+      #   @posts[i] << timestamp = post.created_at
+      #   # image = post.user.image_path
+      #
+      # end
 
-      puts "*****TWO*******************"
-      @api_data = client.user_search(@author, lang:'en').take(1)
-      puts "**API DATA: ****#{@api_data.inspect}*************"
+      @api_data.each_with_index do |post, i|
+        @posts << []
+        # avatar = post.profile_image_url
+        @posts[i] << author = post.user
+        @posts[i] << text = post.text
+        @posts[i] << timestamp = post.created_at
+        # image = post.user.image_path
+
+      end
+
+        # .hashtags.each.text => [#<Twitter::Entity::Hashtag:0x007fea752a9420 @attrs={:text=>"WHD2013", :indices=>[17, 25]}>, #<Twitter::Entity::Hashtag:0x007fea752a93a8 @attrs={:text=>"EveryMileMatters", :indices=>[108, 125]}>, #<Twitter::Entity::Hashtag:0x007fea752a91c8 @attrs={:text=>"BeyGood", :indices=>[126, 134]}>]
+
+
+
+
+      puts "**POSTS: ****#{@posts.each do |post| puts post end}*************"
       # @api_data.
     end
 

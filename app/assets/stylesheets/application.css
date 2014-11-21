@@ -103,10 +103,10 @@ header {
 }
 
 .container2:before {
-  background: linear-gradient( 55deg, transparent 33.333%, white 33.333%,
+  /*background: linear-gradient( 55deg, transparent 33.333%, white 33.333%,
     white 66.667%, transparent 66.667% ),
      linear-gradient( -55deg, transparent 33.333%, white 33.333%,
-       white 66.667%, transparent 66.667% );
+       white 66.667%, transparent 66.667% );*/
   background-size: 40px 80px;
 }
 /*.zigzag {
