@@ -16,9 +16,12 @@
 
 $(document).ready(function() {
 
-  $(".fulltext").click(function () {
+  $(".search-icon").hover(function () {
     $(this).siblings(".form-stuff").slideToggle(600);
   });
+
+
+  // jquery animate
   //   $(".search-icon").click(function(e) {
   //     e.preventDefault();
   //     $(this).addClass("red");
