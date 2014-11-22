@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   def subscribe
     @user = User.find(session[:current_user])
     @author = Author.find(params[:id])
+    puts "********AUTHOR.ID: #{@author.id}***********"
     @authors_user = AuthorsUser.new
-    
     @authors_user.author_id = @author.id
     @authors_user.user_id = session[:current_user]
     # redirect_to "/users/#{session[:current_user]}/feed"
