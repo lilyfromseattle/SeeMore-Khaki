@@ -43,11 +43,11 @@
     <div class="search-bars">
       <%= form_tag("/home/search", method: "post", class: "search") do %>
       <!-- <div class "hidden"> -->
-      <div class = "form-stuff">
+      <!-- <div class = "form-stuff"> -->
         <%= text_field_tag :search, params[:search], :placeholder => "Vimeo user", class: "text-field" %>
         <%= hidden_field_tag :service, "Vimeo" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
-      </div>
+      <!-- </div> -->
 
         <div class = "search-icon">
           <%= image_tag "vimeo_icon.png", class: "icon" %>
