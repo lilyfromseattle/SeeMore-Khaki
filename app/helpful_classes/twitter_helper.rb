@@ -19,13 +19,17 @@ class TwitterHelper
 
     @api_data = @client.user_timeline(@author.name).take(5)
     @api_data.each_with_index do |tweet, i|
-      new_tweet = Post.new(
-        author_id: @author.id,
-        words: tweet.text,
-        timestamp: tweet.created_at.to_s
-      )
-      if new_tweet.save
-        @tweets << new_tweet
+      unless old_tweet = Post.where(author_id: @author.id, words: tweet.text)
+        new_tweet = Post.new(
+          author_id: @author.id,
+          words: tweet.text,
+          timestamp: tweet.created_at.to_s
+        )
+        if new_tweet.save
+          @tweets << new_tweet
+        end
+      else
+        @tweets << old_tweet
       end
     end
   end

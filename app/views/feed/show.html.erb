@@ -26,8 +26,8 @@
           </tr>
       <% elsif post.author.service == "Instagram" %>
           <tr>
-            <td><%= link_to post[:show_name], "http://instagram.com/#{post[:author]}" %> on Instagram</td>
-            <td><%= link_to image_tag(post[:image]["url"], caption: post[:caption]), post[:url] %> <!--stick a partial in here--></td>
+            <td><%= link_to post[:show_name], "http://instagram.com/#{post.author.name}" %> on Instagram</td>
+            <td><%= link_to image_tag(post.url_id, caption: post.words), post.url_id %> <!--stick a partial in here--></td>
             <td><%= post.timestamp %></td>
           </tr>
       <% else %>
