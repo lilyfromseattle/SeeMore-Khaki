@@ -9,12 +9,12 @@
       <% if post.author.service == "Vimeo" %>
         <tr>
           <td><%= post.author.name %></td>
-          <td><%= post.words %><br><iframe src="//player.vimeo.com/video/<%= post.url_id.to_s %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></td>
+          <td><%= post.words %><br><iframe src="//player.vimeo.com/video/<%= post.url_id %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></td>
           <td><%= post.timestamp %></td>
         </tr>
       <% elsif post.author.service == "Twitter" %>
           <tr>
-            
+            <td><img src="<%= post.author.avatar %>"></td>
             <td><%= post.author.name %></td>
             <td><%= post.words %></td>
             <td><%= post.timestamp %> </td>

@@ -17,7 +17,9 @@ class TwitterHelper
       config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
     end
     @api_data = @client.user_timeline(@author.name).take(5)
-    # @author.avatar = @api_data.profile_image_url
+    @author.update(avatar: @client.user.profile_image_url.to_s)
+
+    puts "USER AVATAR: #{@author.avatar}*********"
     @api_data.each_with_index do |tweet, i|
       unless old_tweet = Post.find_by(author_id: @author.id, words: tweet.text)
         new_tweet = Post.new(
@@ -25,6 +27,7 @@ class TwitterHelper
           words: tweet.text,
           timestamp: tweet.created_at.to_s
         )
+        puts "POST.INSPECT: #{new_tweet.url_id}"
         if new_tweet.save
           @tweets << new_tweet
         end
