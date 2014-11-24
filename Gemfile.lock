@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    beemo (0.0.2)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -226,6 +227,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  beemo (~> 0.0.2)
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)
