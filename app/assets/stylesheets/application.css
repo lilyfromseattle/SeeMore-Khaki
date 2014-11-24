@@ -22,14 +22,7 @@ body {
   background: white;
 }
 #middle {
-  /*padding: 10px;
-  padding-top: 40px;*/
-
-  /*position: fixed;*/
-
   position: relative;
-  /*padding: 10px;*/
-
   margin-top: 200px;
   margin-left: 400px;
 }
@@ -53,7 +46,7 @@ header h1 {
   margin-right: 15px;*/
   display: inline-block;
   width: 100%;
-  z-index: 1450;
+  z-index: 1000;
   position: absolute;
   /*margin-left: -150px;*/
   /*margin-top: 5px;*/
@@ -65,7 +58,7 @@ header h1 {
 .sign-in {
   display: inline-block;
   text-decoration: none;
-  color: beige;
+  color: darkgreen;
   padding-bottom: 5px;
 
 }
@@ -126,7 +119,7 @@ header {
   top: 109px;
   left: 0;
   right: 0;
-  height: 200px;
+  /*height: 200px;*/
 }
 
 .zigzag:before {
@@ -275,6 +268,9 @@ header {
   margin-top: 52px;
 }
 
+#sign-float {
+  width: 100px;
+}
 .float {
   float: right;
   /*z-index: 200;*/
@@ -357,8 +353,7 @@ form {
   margin: 0;
   padding: 0;
   width: 243px;
-  /*background: blue;*/
-  /*display: none;*/
+  display:none;
 }
 
 .search-icon {
@@ -380,7 +375,7 @@ form {
 .search-bars {
   position: fixed;
   margin-top: 150px;
-  width: 315px;
+  width: 320px;
   padding: 0;
 }
 

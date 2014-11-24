@@ -16,12 +16,14 @@ class FeedController < ApplicationController
         @posts += z.videos
       elsif author.service == "Twitter"
         z = TwitterHelper.new(author)
-        puts "ARE WE QUERYING FOR POSTS?"
-        z.query_for_posts
-        @posts += z.posts
+
+        z.query_for_tweets
+
+        @posts += z.tweets
       end
     end
-    @posts.sort_by! { |post| DateTime.parse(post[:timestamp]) }
+
+    @posts.sort_by! { |post| post['timestamp'].nil? ? DateTime.new : DateTime.parse(post['timestamp']) }
     @posts.reverse!
   end
 end

@@ -34,28 +34,9 @@
       <div class = "float"></div>
     </div>
   </header>
-  <div id="login-stuff">
-  <div class = "float">
-    <% if current_user %>
-    <% current_user = User.find(current_user) %>
-    Logged in as <%= current_user.name %> via <%= current_user.provider.capitalize %><br>
-    <%= link_to "Sign Out", signout_path, {method: "delete"} %><br>
-    <%= link_to "View Feed", feed_path(current_user) %>
-    <% else %>
 
-    <%= link_to "Sign In with Fake Auth", "/auth/developer", class: "sign-in" %>
-    <%= link_to "Sign In with Instagram", "/auth/instagram", class: "sign-in" %>
-    <%= link_to "Sign In With Twitter", "/auth/twitter", class: "sign-in" %>
-    <%= link_to "Sign In with GitHub", "/auth/github", class: "sign-in" %>
-
-    <% end %>
-  </div>
-</div>
 
   <div class="container2 zigzag"></div>
-
-
-
   <% if session[:current_user] %>
     <!-- <div class = "search"> -->
     <!-- VIMEO FORM: -->
@@ -119,10 +100,7 @@
   <div id = "middle">
     <%= yield %>
   </div>
-  <footer>
-    <hr>
-    Pretend I am monster teeth
-  </footer>
+
 
 </body>
 </html>

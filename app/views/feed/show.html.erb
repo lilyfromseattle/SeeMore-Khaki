@@ -1,4 +1,4 @@
-<table
+<table>
 <thead></thead>
   <tbody>
     <% @posts.each do |post| %>
@@ -8,6 +8,13 @@
           <td><%= post[:title] %></td>
           <td><%= post[:timestamp] %></td>
         </tr>
+
+      <% elsif post[:service] == "Twitter" %>
+          <tr>
+            <td><%= post[:user] %></td>
+            <td><%= post[:content] %></td>
+            <td><%= post[:timestamp] %> </td>
+          </tr>    
       <% else %>
         <tr>
           <td><%= post[:title] %></td>
@@ -18,4 +25,4 @@
       <% end %>
     <% end %>
   </tbody>
-</table
+</table>

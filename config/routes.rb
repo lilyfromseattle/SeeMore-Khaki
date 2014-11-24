@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   get "/home/search",                 to: "home#search",      as: :search_results
   post "/home/search",                to: "home#search",      as: :search
+  
   post "/users/subscribe/:id",  to: "users#subscribe",  as: :subscribe
   get "/home/subscribed", to: "home#subscribed", as: :subscribed_path
 
