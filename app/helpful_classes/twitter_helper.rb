@@ -9,18 +9,6 @@ class TwitterHelper
     @author.class == Author ? @avatar = @author.avatar : query_for_author
   end
 
-  # def query_for_tweets
-  #   @client = Twitter::REST::Client.new do |config|
-  #     config.consumer_key        = ENV["TWITTER_API_KEY"]
-  #     config.consumer_secret     = ENV["TWITTER_API_SECRET"]
-  #     config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
-  #     config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
-  #   end
-  #
-  #   # @api_data = @client.user_search(@author)
-  #   parse_api
-  # end
-
   def query_for_tweets
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TWITTER_API_KEY"]
@@ -29,8 +17,6 @@ class TwitterHelper
       config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
     end
 
-    # @api_data is an array of tweets here
-    #puts "@AUTHOR: #{@author.inspect}"
     @api_data = @client.user_timeline(@author.name).take(1)
     @api_data.each_with_index do |tweet, i|
       @tweets << {
@@ -39,37 +25,17 @@ class TwitterHelper
       content: [tweet.text],
       timestamp: [tweet.created_at]
       }
-
-      # puts "THIS IS THE TEXT:"
-      # puts tweet.text
-      # puts "************"
-      #
-      # # avatar = tweet.profile_image_url
-      # @tweets[i] << author = tweet.user
-      # puts "USER: #{tweet.user}*********"
-      # @tweets[i] << text = tweet.text
-      # puts "TEXT: #{tweet.text}************"
-      # @tweets[i] << timestamp = tweet.created_at
-      # # image = tweet.user.image_path
     end
   end
 
   def query_for_author
     db_or_api
-    # The above method searches the db for the author,
-    # does api query if author isn't in db
     if @author.class == Author
       @author
-      puts "DOING THIS ONE FOR SOME FUCKING REASON"
     else
       new_author = Author.new(name: @author, service: "Twitter")
       new_author.save
       @author = new_author
-      puts "IS THIS WORKING?"
-      puts "AUTHOR #{@author.inspect} ****"
-    # else
-    #   puts "*****FOURTH OPTION*********************"
-
     end
   end
 
