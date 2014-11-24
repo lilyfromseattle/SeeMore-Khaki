@@ -8,21 +8,32 @@ class VimeoHelper
   end
 
   def query_for_vids
+    query_db_for_vids
     @api_data = Vimeo::Simple::User.videos(@author.name).parsed_response
     parse_api
+  end
+
+  def query_db_for_vids
+    vids = Post.where(author_id: @author.id)
+    vids.each do |vid|
+      @videos << vid
+    end
   end
 
   def parse_api
     @api_data.each do |vid|
       @author.avatar ||= vid["user_portrait_medium"]
-      puts vid["url"]
-      new_post = Post.new(
-        author_id: @author.id,
-        words: vid["title"],
-        url_id: /\d+/.match(vid["url"]).to_i,
-        timestamp: vid["upload_date"] )
-      if new_post.save
-        @videos << new_post
+      unless old_post = Post.find_by(url_id: /\d+/.match(vid["url"]).to_s.to_i)
+        new_post = Post.new(
+          author_id: @author.id,
+          words: vid["title"],
+          url_id: /\d+/.match(vid["url"]).to_s.to_i,
+          timestamp: vid["upload_date"] )
+        if new_post.save
+          @videos << new_post
+        end
+      else
+        @videos << old_post
       end
     end
   end

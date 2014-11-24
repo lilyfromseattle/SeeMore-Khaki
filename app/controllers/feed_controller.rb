@@ -23,7 +23,7 @@ class FeedController < ApplicationController
       end
     end
 
-    @posts.sort_by! { |post| post['timestamp'].nil? ? DateTime.new : DateTime.parse(post['timestamp']) }
+    @posts.sort_by! { |post| post.timestamp }
     @posts.reverse!
   end
 end

@@ -19,12 +19,14 @@ class TwitterHelper
 
     @api_data = @client.user_timeline(@author.name).take(5)
     @api_data.each_with_index do |tweet, i|
-      @tweets << {
-      service: "Twitter",
-      user: [tweet.user.name],
-      content: [tweet.text],
-      timestamp: [tweet.created_at]
-      }
+      new_tweet = Post.new(
+        author_id: @author.id,
+        words: tweet.text,
+        timestamp: tweet.created_at.to_s
+      )
+      if new_tweet.save
+        @tweets << new_tweet
+      end
     end
   end
 
