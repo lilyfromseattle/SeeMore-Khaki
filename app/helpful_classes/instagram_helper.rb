@@ -43,6 +43,7 @@ class InstagramHelper
         url:        api_hash["link"],
         image:      api_hash["images"]["thumbnail"],
         author:     api_hash["user"]["username"],
+        show_name:  api_hash["user"]["full_name"],
         caption:    api_hash["caption"] ? api_hash["caption"]["text"] : nil
       }
     end
