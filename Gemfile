@@ -38,6 +38,8 @@ group :development do
 end
 
 gem 'vimeo'
+gem 'beemo', '~> 0.0.2'
+
 gem 'instagram'
 
 gem 'twitter', '~> 5.13.0'

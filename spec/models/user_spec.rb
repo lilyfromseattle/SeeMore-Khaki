@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
 let(:user) { User.new(
     email:    "a@b.com",
-    name: "Bookis",
+    name:     "Bookis",
     uid:      "1234",
     provider: "github")
   }
