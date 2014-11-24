@@ -8,9 +8,10 @@ class HomeController < ApplicationController
       @author = VimeoHelper.new(params[:search]).author
 
     elsif params[:service] == "Instagram"
-      @search_term = params[:search]
-      @ig_hash = InstagramHelper.new(@search_term)
-      @search_results = @ig_hash.results_array
+      search_term = params[:search]
+      ig_helper = InstagramHelper.new
+      ig_helper.query_for_users(search_term)
+      @search_results = ig_helper.results_array
 
     elsif params[:service] == "Twitter"
       twit = TwitterHelper.new(params[:search])
@@ -18,7 +19,9 @@ class HomeController < ApplicationController
       @search_results = twit.search_results
 
     elsif params[:service] == "GitHub"
-      @author = GithubHelper.new(@search_term)
+      gh = GuthubHelper.new(params[:search])
+      @author = gh.author
+      @search_results = gh.search_results
     end
   end
 

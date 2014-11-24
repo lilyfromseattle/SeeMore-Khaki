@@ -3,15 +3,12 @@ class UsersController < ApplicationController
   def subscribe
     @user = User.find(session[:current_user])
     @author = Author.find(params[:id])
-    #if the @authors_user already exists, don't create a new one; give a message
-    puts "DOES THE AUTHORSUSER ALREADY EXIST?: #{AuthorsUser.where(:author_id => @author.id).inspect} **"
     if AuthorsUser.where(:author_id => @author.id) != []
       flash[:notice] = "You are already subscribed to #{@author.name}!"
       # redirect_to "/home/subscribed"
       redirect_to "/users/#{session[:current_user]}/feed"
 
     else
-      puts "CREATING A NEW AU (CORRECT)"
       @authors_user = AuthorsUser.new
 
       @authors_user.author_id = @author.id
@@ -26,13 +23,16 @@ class UsersController < ApplicationController
     end
 
   end
-
   def instagram_subscribe
     @user = User.find(session[:current_user])
     uid = params[:uid]
     @author = Author.find_by(uid: uid, service: "Instagram")
     if @author
-      @user.authors << @author
+      unless @user.authors.include? @author
+        add_and_confirm(@author)
+      else
+        flash[:notice] = "You're already subscribed to #{@author.name} on Instagram."
+      end
     else
       add_instagram_user(uid)
     end
@@ -45,16 +45,21 @@ class UsersController < ApplicationController
       url = "https://api.instagram.com/v1/users/#{uid}?client_id=#{ENV["INSTAGRAM_CLIENT_ID"]}"
       api_hash = HTTParty.get(url)["data"]
       author = Author.new({
-        name: api_hash["username"],
-        avatar: api_hash["profile_picture"],
-        uid: api_hash["id"],
-        service: "Instagram"
+        name:     api_hash["username"],
+        avatar:   api_hash["profile_picture"],
+        uid:      api_hash["id"],
+        service:  "Instagram"
         })
       if author.save
-        @user.authors << author
+        add_and_confirm(author)
       else
         raise "this is probably instagram's fault"
       end
+    end
+
+    def add_and_confirm(author)
+      @user.authors << author
+      flash[:notice] = "You're subscribed to #{author.name} on #{author.service}!"
     end
 
 end

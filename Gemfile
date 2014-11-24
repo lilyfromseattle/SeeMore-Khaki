@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 #this sets temporary env variables
 gem 'dotenv-rails', :groups => [:development, :test]
 gem "omniauth"
-gem "omniauth-github"
+gem 'omniauth-github', '~> 1.1.2'
 gem 'omniauth-twitter'
 gem "omniauth-vimeo"
 gem "omniauth-instagram"

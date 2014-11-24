@@ -3,6 +3,7 @@ class FeedController < ApplicationController
   def index
     # Twitter.author
     @feed_content = ApiHelper.all
+    raise
   end
 
   def show
@@ -16,14 +17,22 @@ class FeedController < ApplicationController
         @posts += z.videos
       elsif author.service == "Twitter"
         z = TwitterHelper.new(author)
-
         z.query_for_tweets
-
         @posts += z.tweets
+      elsif author.service == "Instagram"
+        z = InstagramHelper.new
+        z.query_for_igs(author.uid)
+        @posts += z.results_array
+      elsif author.service == "Github"
+        z = GithubHelper.new(author)
+        z.query_for_activities
+        @posts += z.activities
       end
     end
 
+
     @posts.sort_by! { |post| post.timestamp }
     @posts.reverse!
+
   end
 end
