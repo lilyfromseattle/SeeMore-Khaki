@@ -18,7 +18,9 @@ class HomeController < ApplicationController
       @search_results = twit.search_results
 
     elsif params[:service] == "GitHub"
-      @author = GithubHelper.new(@search_term)
+      gh = GuthubHelper.new(params[:search])
+      @author = gh.author
+      @search_results = gh.search_results
     end
   end
 

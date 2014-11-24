@@ -3,15 +3,12 @@ class UsersController < ApplicationController
   def subscribe
     @user = User.find(session[:current_user])
     @author = Author.find(params[:id])
-    #if the @authors_user already exists, don't create a new one; give a message
-    puts "DOES THE AUTHORSUSER ALREADY EXIST?: #{AuthorsUser.where(:author_id => @author.id).inspect} **"
     if AuthorsUser.where(:author_id => @author.id) != []
       flash[:notice] = "You are already subscribed to #{@author.name}!"
       # redirect_to "/home/subscribed"
       redirect_to "/users/#{session[:current_user]}/feed"
 
     else
-      puts "CREATING A NEW AU (CORRECT)"
       @authors_user = AuthorsUser.new
 
       @authors_user.author_id = @author.id

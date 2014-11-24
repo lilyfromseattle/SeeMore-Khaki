@@ -32,9 +32,6 @@ class TwitterHelper
     db_or_api
     if @author.class == Author
       @author
-      puts "Author.inspect:"
-      puts @author.inspect
-      puts "IT IS NOT CREATING A NEW AUTHOR"
       @client = Twitter::REST::Client.new do |config|
         config.consumer_key        = ENV["TWITTER_API_KEY"]
         config.consumer_secret     = ENV["TWITTER_API_SECRET"]
@@ -43,7 +40,6 @@ class TwitterHelper
       end
       @search_results = @client.user_search(@author.name).take(10)
     else
-      puts "IT IS CREATING A NEW AUTHOR"
       new_author = Author.new(name: @author, service: "Twitter")
       new_author.save
       @author = new_author

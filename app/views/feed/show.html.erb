@@ -14,7 +14,13 @@
             <td><%= post[:user] %></td>
             <td><%= post[:content] %></td>
             <td><%= post[:timestamp] %> </td>
-          </tr>    
+          </tr>
+      <% elsif post[:service] == "Github" %>
+          <tr>
+            <td><%= post[:user] %></td>
+            <td><%= post[:content] %></td>
+            <td><%= post[:timestamp] %> </td>
+          </tr>
       <% else %>
         <tr>
           <td><%= post[:title] %></td>

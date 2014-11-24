@@ -237,7 +237,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   omniauth
-  omniauth-github
+  omniauth-github (~> 1.1.2)
   omniauth-instagram
   omniauth-twitter
   omniauth-vimeo

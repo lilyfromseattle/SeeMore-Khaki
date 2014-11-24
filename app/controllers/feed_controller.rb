@@ -20,10 +20,14 @@ class FeedController < ApplicationController
         z.query_for_tweets
 
         @posts += z.tweets
+      elsif author.service == "Github"
+        z = GithubHelper.new(author)
+        z.query_for_activities
+        @posts += z.activities
       end
     end
 
     @posts.sort_by! { |post| post['timestamp'].nil? ? DateTime.new : DateTime.parse(post['timestamp']) }
-    @posts.reverse!
+    @posts.reverse
   end
 end
