@@ -17,7 +17,7 @@ class TwitterHelper
       config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
     end
 
-    @api_data = @client.user_timeline(@author.name).take(1)
+    @api_data = @client.user_timeline(@author.name).take(5)
     @api_data.each_with_index do |tweet, i|
       @tweets << {
       service: "Twitter",
@@ -32,7 +32,18 @@ class TwitterHelper
     db_or_api
     if @author.class == Author
       @author
+      puts "Author.inspect:"
+      puts @author.inspect
+      puts "IT IS NOT CREATING A NEW AUTHOR"
+      @client = Twitter::REST::Client.new do |config|
+        config.consumer_key        = ENV["TWITTER_API_KEY"]
+        config.consumer_secret     = ENV["TWITTER_API_SECRET"]
+        config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
+        config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
+      end
+      @search_results = @client.user_search(@author.name).take(10)
     else
+      puts "IT IS CREATING A NEW AUTHOR"
       new_author = Author.new(name: @author, service: "Twitter")
       new_author.save
       @author = new_author
@@ -42,6 +53,7 @@ class TwitterHelper
   def db_or_api
     if Author.find_by(name: @author, service: "Twitter")
       @author = Author.find_by(name: @author, service: "Twitter")
+      "IS IT FINDING IT BY NAME?"
     else
       @client = Twitter::REST::Client.new do |config|
         config.consumer_key        = ENV["TWITTER_API_KEY"]
@@ -49,8 +61,7 @@ class TwitterHelper
         config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
         config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
       end
-      @search_results = @client.user_search(@author).take(1)
-      @api_data = @client.user_timeline(@author).take(1)
+      @search_results = @client.user_search(@author).take(10)
       @api_data.each_with_index do |tweet, i|
         @tweets << []
         # avatar = tweet.profile_image_url
