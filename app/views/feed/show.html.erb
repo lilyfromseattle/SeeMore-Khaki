@@ -2,11 +2,11 @@
 <thead></thead>
   <tbody>
     <% @posts.each do |post| %>
-      <% if post[:service] == "Vimeo" %>
+      <% if post.author.service == "Vimeo" %>
         <tr>
-          <td><iframe src="//player.vimeo.com/video/<%= post[:content] %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></td>
-          <td><%= post[:title] %></td>
-          <td><%= post[:timestamp] %></td>
+          <td><iframe src="//player.vimeo.com/video/<%= post.url_id.to_s %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></td>
+          <td><%= post.words %></td>
+          <td><%= post.timestamp %></td>
         </tr>
 
       <% elsif post[:service] == "Twitter" %>
@@ -14,7 +14,7 @@
             <td><%= post[:user] %></td>
             <td><%= post[:content] %></td>
             <td><%= post[:timestamp] %> </td>
-          </tr>    
+          </tr>
       <% else %>
         <tr>
           <td><%= post[:title] %></td>
