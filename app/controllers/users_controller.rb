@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
     def add_and_confirm(author)
       @user.authors << author
-      flash[:notice] = "You've subscribed to #{author.name} on #{author.service}!"
+      flash[:notice] = "You're subscribed to #{author.name} on #{author.service}!"
     end
 
 end
