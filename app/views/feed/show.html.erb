@@ -1,11 +1,15 @@
+<% if flash[:notice] %>
+<div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <table>
 <thead></thead>
   <tbody>
     <% @posts.each do |post| %>
       <% if post[:service] == "Vimeo" %>
         <tr>
-          <td><iframe src="//player.vimeo.com/video/<%= post[:content] %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></td>
           <td><%= post[:title] %></td>
+          <td><iframe src="//player.vimeo.com/video/<%= post[:content] %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></td>
           <td><%= post[:timestamp] %></td>
         </tr>
 
@@ -15,11 +19,18 @@
             <td><%= post[:content] %></td>
             <td><%= post[:timestamp] %> </td>
           </tr>
+
       <% elsif post[:service] == "Github" %>
           <tr>
             <td><%= post[:user] %></td>
             <td><%= post[:content] %></td>
             <td><%= post[:timestamp] %> </td>
+          </tr>
+      <% elsif post[:service] == "Instagram" %>
+          <tr>
+            <td><%= link_to post[:show_name], "http://instagram.com/#{post[:author]}" %> on Instagram</td>
+            <td><%= link_to image_tag(post[:image]["url"], caption: post[:caption]), post[:url] %> <!--stick a partial in here--></td>
+            <td><%= post[:timestamp] %></td>
           </tr>
       <% else %>
         <tr>

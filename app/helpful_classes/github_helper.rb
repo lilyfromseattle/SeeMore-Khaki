@@ -3,7 +3,7 @@ class GithubHelper
   attr_accessor :author, :activities, :search_results, :api_data, :results_array
 
   def initialize author
-    url = "https://api.github.com/v1/users/search?q=#{search_term}&client_id=#{ENV["GITHUB_CLIENT_ID"]}"
+    url = "https://github.com/login/oauth/authorize?scope=user:email&client_id}"
     parse(HTTParty.get(url)["data"])
 
     @author = author
