@@ -22,7 +22,11 @@ class UsersController < ApplicationController
     uid = params[:uid]
     @author = Author.find_by(uid: uid, service: "Instagram")
     if @author
-      add_and_confirm(author)
+      unless @user.authors.include? @author
+        add_and_confirm(@author)
+      else
+        flash[:notice] = "You're already subscribed to #{@author.name} on Instagram."
+      end
     else
       add_instagram_user(uid)
     end
