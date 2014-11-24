@@ -19,7 +19,7 @@ class TwitterHelper
 
     @api_data = @client.user_timeline(@author.name).take(5)
     @api_data.each_with_index do |tweet, i|
-      unless old_tweet = Post.where(author_id: @author.id, words: tweet.text)
+      unless old_tweet = Post.find_by(author_id: @author.id, words: tweet.text)
         new_tweet = Post.new(
           author_id: @author.id,
           words: tweet.text,
