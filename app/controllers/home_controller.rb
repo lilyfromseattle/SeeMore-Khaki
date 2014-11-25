@@ -8,9 +8,9 @@ class HomeController < ApplicationController
       @author = VimeoHelper.new(params[:search]).author
 
     elsif params[:service] == "Instagram"
-      search_term = params[:search]
+      @search_term = params[:search]
       ig_helper = InstagramHelper.new
-      ig_helper.query_for_users(search_term)
+      ig_helper.query_for_users(@search_term)
       @search_results = ig_helper.results_array
 
     elsif params[:service] == "Twitter"

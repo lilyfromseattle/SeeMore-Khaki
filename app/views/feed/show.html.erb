@@ -6,6 +6,7 @@
 <thead></thead>
   <tbody>
     <% @posts.each do |post| %>
+      <%= post.author.service %>
       <% if post.author.service == "Vimeo" %>
         <tr>
           <td><%= post.author.name %></td>

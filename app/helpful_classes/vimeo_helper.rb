@@ -23,7 +23,7 @@ class VimeoHelper
   def parse_api
     @api_data.each do |vid|
       @author.avatar ||= vid["user_portrait_medium"]
-      unless old_post = Post.find_by(url_id: /\d+/.match(vid["url"]).to_s.to_i)
+      unless old_post = Post.find_by(url_id: /\d+/.match(vid["url"]).to_s)
         new_post = Post.new(
           author_id: @author.id,
           words: vid["title"],
