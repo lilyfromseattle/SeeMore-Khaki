@@ -8,9 +8,9 @@ class InstagramHelper
     parse(HTTParty.get(url)["data"])
   end
 
-  def query_for_igs(uid)
+  def query_for_igs(uid, current_user)
     url = "https://api.instagram.com/v1/users/#{uid}/media/recent?client_id=#{ENV["INSTAGRAM_CLIENT_ID"]}"
-    add_igs_to_db(HTTParty.get(url)["data"])
+    add_igs_to_db(HTTParty.get(url)["data"], current_user)
 
   end
 
@@ -30,10 +30,14 @@ class InstagramHelper
       }
     end
 
-    def add_igs_to_db(api_hash)
+    def add_igs_to_db(api_hash, current_user)
       @results_array = []
       api_hash.each do |ig|
-        unless Post.find_by(url_id: ig["link"])
+        puts ig.inspect
+        post = User.find(current_user).posts.find_by(url_id: ig["link"])
+        if post
+          @results_array << post
+        else
           @results_array << Post.create(
             author_id:  Author.find_by(service: "Instagram", uid: ig["user"]["id"]).id,
             timestamp:  Time.at(ig["created_time"].to_i),
