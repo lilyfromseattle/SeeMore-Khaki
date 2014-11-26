@@ -43,18 +43,22 @@ class UsersController < ApplicationController
 
     def add_instagram_user(uid)
       url = "https://api.instagram.com/v1/users/#{uid}?client_id=#{ENV["INSTAGRAM_CLIENT_ID"]}"
-
-      api_hash = HTTParty.get(url)["data"]
-      author = Author.new({
-        name:     api_hash["username"],
-        avatar:   api_hash["profile_picture"],
-        uid:      api_hash["id"],
-        service:  "Instagram"
-        })
-      if author.save
-        add_and_confirm(author)
+      api_hash = HTTParty.get(url)
+      if api_hash["meta"]["code"] == 200
+        api_hash = api_hash["data"]
+        author = Author.new({
+          name:     api_hash["username"],
+          avatar:   api_hash["profile_picture"],
+          uid:      api_hash["id"],
+          service:  "Instagram"
+          })
+        if author.save
+          add_and_confirm(author)
+        else
+          raise "this is probably instagram's fault"
+        end
       else
-        raise "this is probably instagram's fault"
+        flash[:notice] = "Fail :( Maybe this account is private?"
       end
     end
 
