@@ -21,8 +21,8 @@ class UsersController < ApplicationController
         redirect_to "/users/#{session[:current_user]}/feed"
       end
     end
-
   end
+
   def instagram_subscribe
     @user = User.find(session[:current_user])
     uid = params[:uid]
@@ -43,6 +43,7 @@ class UsersController < ApplicationController
 
     def add_instagram_user(uid)
       url = "https://api.instagram.com/v1/users/#{uid}?client_id=#{ENV["INSTAGRAM_CLIENT_ID"]}"
+
       api_hash = HTTParty.get(url)["data"]
       author = Author.new({
         name:     api_hash["username"],
