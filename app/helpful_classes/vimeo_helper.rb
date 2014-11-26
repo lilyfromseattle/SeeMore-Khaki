@@ -61,6 +61,9 @@ class VimeoHelper
       if /\s/.match(@author)
         @api_data = "That is not a valid username."
       else
+        # Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
+        # users = Beemo::User.search(@author)
+        # raise users
         @api_data = Vimeo::Simple::User.info(@author).parsed_response
       end
     end
