@@ -22,4 +22,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
         :token_url => 'https://github.YOURDOMAIN.com/login/oauth/access_token',
       }
     }
+
+
+  provider :vimeo, ENV['VIMEO_KEY'], ENV['VIMEO_SECRET']
 end
