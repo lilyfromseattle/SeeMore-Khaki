@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def subscribe
     @user = User.find(session[:current_user])
     @author = Author.find(params[:id])
-    if AuthorsUser.where(:author_id => @author.id) != []
+    if AuthorsUser.where(user_id: @user.id, author_id: @author.id) != []
       flash[:notice] = "You are already subscribed to #{@author.name}!"
       # redirect_to "/home/subscribed"
       redirect_to "/users/#{session[:current_user]}/feed"
