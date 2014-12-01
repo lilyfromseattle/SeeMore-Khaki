@@ -9,28 +9,28 @@
         <tr>
           <td><%= post.author.name %></td>
           <td><%= post.words %><br><iframe src="//player.vimeo.com/video/<%= post.url_id %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></td>
-          <td><%= post.timestamp %></td>
+          <td>Created <%= time_ago_in_words(post.timestamp) %> ago</td>
         </tr>
       <% elsif post.author.service == "Twitter" %>
           <tr>
             <td><img src="<%= post.author.avatar %>"></td>
             <td><%= post.author.name %></td>
             <td><%= post.words %></td>
-            <td><%= post.timestamp %> </td>
+            <td>Created <%= time_ago_in_words(post.timestamp) %> ago</td>
           </tr>
       <% elsif post.author.service == "Github" %>
           <tr>
             <td><img src="<%= post.author.avatar %>"></td>
             <td><%= post.author.name %></td>
             <td><%= post.words %></td>
-            <td><%= post.timestamp %> </td>
+            <td>Created <%= time_ago_in_words(post.timestamp) %> ago</td>
           </tr>
       <% elsif post.author.service == "Instagram" %>
           <tr>
             <td><%= image_tag(post.author.avatar, size: "48x48") %>
-            <td><%= link_to post.author.name, "http://instagram.com/#{post.author.name}" %> on Instagram</td>
+            <td><%= link_to post.author.name, "http://instagram.com/#{post.author.name}", class: "user-name" %> on Instagram</td>
             <td><%= link_to image_tag(post.words, caption: post.words), post.url_id %> <!--stick a partial in here--></td>
-            <td><%= post.timestamp %></td>
+            <td>Created <%= time_ago_in_words(post.timestamp) %> ago</td>
           </tr>
       <% else %>
         <tr>

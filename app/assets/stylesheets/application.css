@@ -464,11 +464,13 @@ form {
   display: inline-block;
 }
 
-.li-links:hover {
+.li-links:hover, .li-links:active, .li-links:visited  {
   background: beige;
   text-decoration: none;
   color: green;
 }
+
+
 
 #logged-in {
   color: green;
@@ -486,6 +488,11 @@ form {
   margin-right: 40%;
 }
 
+.user-name {
+  color: yellowgreen;
+  font-size: 2em;
+  font-style: bold;
+}
 @media screen and (max-width: 700px) {
   #feed-me-title {
     display: none;
