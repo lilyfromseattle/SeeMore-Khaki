@@ -12,16 +12,16 @@ class GithubHelper
 
   def query_for_activities
     puts "IS THIS QUERY EVER CALLED?"
-    @client = Octokit::Client.new(:access_token => ENV["GITHUB_ACCESS_TOKEN"])
+    @client = Octokit::Client.new(:access_token => "8cc24e088e03f0a44003bac6571e77d9f6d33b45")
 
-    @api_data = @client.search_users(@author)
+    @api_data = @client.search_users(@author.name)
     @author.update(avatar: @api_data.items[0].avatar_url.to_s)
     @api_data.each_with_index do |activity, i|
-      unless old_activity = Post.find_by(author_id: @author.id, words: activity.text)
+      unless old_activity = Post.find_by(author_id: @author.id, words: "Nothing to report!")
         new_activity = Post.new(
           author_id: @author.id,
-          words: activity.text,
-          timestamp: activity.created_at.to_s
+          words: "Nothing to report!",
+          timestamp: Time.now.to_s
         )
         if new_activity.save
           @activities << new_activity
