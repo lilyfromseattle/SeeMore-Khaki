@@ -514,8 +514,8 @@ form {
 }
 
 .notice {
-  background-image: linear-gradient(to right, white, beige, white);
-  color: green;
+  background-image: linear-gradient(to right, beige, green, beige);
+  color: beige;
   margin-bottom :20px;
 }
 @media screen and (max-width: 720px) {
