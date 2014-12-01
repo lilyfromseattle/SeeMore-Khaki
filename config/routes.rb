@@ -1,36 +1,36 @@
 Rails.application.routes.draw do
 
 
-  root    "home#index"
+  root    'home#index'
 
 
 ######### authorization
 
-  get     "/auth/:provider",            to: "sessions#new",     as: :signin
+  get     '/auth/:provider',            to: 'sessions#new',     as: :signin
 
-  get     "/auth/:provider/callback",   to: "sessions#create",  as: :sessions
-  post    "/auth/:provider/callback",   to: "sessions#create"
+  get     '/auth/:provider/callback',   to: 'sessions#create',  as: :sessions
+  post    '/auth/:provider/callback',   to: 'sessions#create'
 
-  delete  "/users/signout",             to: "sessions#destroy", as: :signout
+  delete  '/users/signout',             to: 'sessions#destroy', as: :signout
 
 ######### instagram
 
-  get     "/instagram/search/:results", to: "home#instagram_search", as: :instagram_results
-  post    "/instagram/subscribe/:uid",  to: "users#instagram_subscribe", as: :instagram_subscribe
+  get     '/instagram/search/:results', to: 'home#instagram_search', as: :instagram_results
+  post    '/instagram/subscribe/:uid',  to: 'users#instagram_subscribe', as: :instagram_subscribe
 
 
-  # get     "/users/:current_user/feed",          to: "feed#show",        as: :feed
+  # get     "/users/:current_user/feed",          to: "feed#show",    as: :feed
 
-  get     "/users/:id/feed",          to: "feed#show",        as: :feed
+  get     '/users/:id/feed',          to: 'feed#show',        as: :feed
 
 
-  get   "/twitter", to: "feed#index"
+  get   '/twitter', to: 'feed#index'
 
-  get "/home/search",                 to: "home#search",      as: :search_results
-  post "/home/search",                to: "home#search",      as: :search
-  
-  post "/users/subscribe/:id",  to: "users#subscribe",  as: :subscribe
-  get "/home/subscribed", to: "home#subscribed", as: :subscribed_path
+  get  '/home/search',                 to: 'home#search',      as: :search_results
+  post '/home/search',                 to: 'home#search',      as: :search
+
+  post '/users/subscribe/:id',  to: 'users#subscribe',  as: :subscribe
+  get '/home/subscribed', to: 'home#subscribed', as: :subscribed_path
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

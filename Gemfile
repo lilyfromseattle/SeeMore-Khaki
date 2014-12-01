@@ -5,8 +5,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem "omniauth"
 gem 'omniauth-github', '~> 1.1.2'
 gem 'omniauth-twitter'
-gem "omniauth-vimeo"
-gem "omniauth-instagram"
+gem 'omniauth-vimeo'
+gem 'omniauth-instagram'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
@@ -33,8 +33,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 gem 'vimeo'
