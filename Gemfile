@@ -8,6 +8,7 @@ gem 'omniauth-twitter'
 gem "omniauth-vimeo"
 gem "omniauth-instagram"
 
+
 gem "octokit", "~> 3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
