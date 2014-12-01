@@ -48,6 +48,8 @@ gem 'twitter', '~> 5.13.0'
 
 gem 'github_api'
 
+gem 'typhoeus'
+
 group :development do
   gem 'rspec-rails'
 end

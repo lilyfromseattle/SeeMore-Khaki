@@ -23,17 +23,16 @@ class VimeoHelper
   def parse_api
     @api_data.each do |vid|
       @author.avatar ||= vid["user_portrait_medium"]
-      unless old_post = Post.find_by(url_id: /\d+/.match(vid["url"]).to_s.to_i)
+      vid_ids = @videos.map { |vid| vid.url_id }
+      unless vid_ids.include?(/\d+/.match(vid["url"]).to_s)
         new_post = Post.new(
           author_id: @author.id,
           words: vid["title"],
-          url_id: /\d+/.match(vid["url"]).to_s.to_i,
+          url_id: /\d+/.match(vid["url"]).to_s,
           timestamp: vid["upload_date"] )
         if new_post.save
           @videos << new_post
         end
-      else
-        @videos << old_post
       end
     end
   end
@@ -62,6 +61,9 @@ class VimeoHelper
       if /\s/.match(@author)
         @api_data = "That is not a valid username."
       else
+        # Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
+        # users = Beemo::User.search(@author)
+        # raise users
         @api_data = Vimeo::Simple::User.info(@author).parsed_response
       end
     end
