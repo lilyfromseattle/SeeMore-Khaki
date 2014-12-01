@@ -19,16 +19,19 @@ body {
   /*padding: 0;
   margin: 0;*/
   font-family: 'Quicksand';
-  background: white;
+  background: yellowgreen;
 }
 #middle {
   position: relative;
-  margin-top: 200px;
+  margin-top: 130px;
   /*margin-left: 400px;*/
   margin-left: 5%;
   margin-right: 10%;
   width: 90%;
   text-align: center;
+  background: rgba(245, 245, 220, 1);
+  height: 100%;
+  padding: 20px;
 }
 
 header h1 {
@@ -109,21 +112,28 @@ header {
   position: fixed;
   height: 130px;
   /*padding: 10px;*/
-  background: khaki;
+  background: beige;
   z-index: 500;
 }
 
 .inside-header {
   background-color: green;
-  height: 109px;
+  height: 110px;
 }
 
 .zigzag {
   position: fixed;
-  top: 109px;
+  /*top: 109px;*/
   left: 0;
   right: 0;
   /*height: 200px;*/
+  height: 30px;
+  /*background-image: linear-gradient();*/
+  margin-top: 20px;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom, from(rgba(154,205,50,1)),
+    to(rgba(154,205,50,0))
+    );
 }
 
 .zigzag:before {
@@ -133,6 +143,7 @@ header {
   left: 0;
   right: 0;
   height: 20px;
+  margin-top: -20px;
 }
 
 .container2 {
@@ -143,10 +154,10 @@ header {
 }
 
 .container2:before {
-  background: linear-gradient( 55deg, transparent 33.333%, white 33.333%,
-    white 66.667%, transparent 66.667% ),
-     linear-gradient( -55deg, transparent 33.333%, white 33.333%,
-       white 66.667%, transparent 66.667% );
+  background: linear-gradient( 55deg, transparent 33.333%, yellowgreen 33.333%,
+    yellowgreen 66.667%, transparent 66.667% ),
+     linear-gradient( -55deg, transparent 33.333%, yellowgreen 33.333%,
+       yellowgreen 66.667%, transparent 66.667% );
   background-size: 40px 80px;
 }
 
@@ -396,7 +407,7 @@ form {
 
 .search-bars {
   position: fixed;
-  margin-top: 150px;
+  margin-top: 50px;
   width: 320px;
   padding: 0;
   z-index: 1000;
@@ -436,7 +447,9 @@ form {
 #left-lid {
   /*background: red;*/
   margin-left: 110px;
-  margin-top: -183px;
+  /*margin-top: -183px;*/
+  /*margin-top: -133px;*/
+  margin-top: -113px;
 
 }
 
@@ -464,7 +477,7 @@ form {
   display: inline-block;
 }
 
-.li-links:hover, .li-links:active, .li-links:visited  {
+.li-links:hover  {
   background: beige;
   text-decoration: none;
   color: green;
@@ -484,7 +497,13 @@ form {
   display: none;
   font-size: 2.5em;
   width: 10%;
-  margin-left: 40%;
+  margin-left: 42%;
+  margin-right: 40%;
+}
+
+#feed-me-title {
+  width: 8%;
+  margin-left: 33%;
   margin-right: 40%;
 }
 
@@ -493,7 +512,13 @@ form {
   font-size: 2em;
   font-style: bold;
 }
-@media screen and (max-width: 700px) {
+
+.notice {
+  background-image: linear-gradient(to right, white, beige, white);
+  color: green;
+  margin-bottom :20px;
+}
+@media screen and (max-width: 720px) {
   #feed-me-title {
     display: none;
     /*font-size: 2.5em;

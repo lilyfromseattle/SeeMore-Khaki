@@ -45,15 +45,18 @@ $(document).ready(function() {
         {"height": "toggle"},
         900);
       });
-    $(".btn").click(function(e) {
+
+    $(".btn.add-author").click(function(e) {
       e.preventDefault();
-      
-    });
-    $.ajax( $form.attr(""), {
+      var $author = this.parents(form);
+
+        $.ajax( $form.attr(""), {
             type: 'Post',
             success: function() {
 
             }
+        });
+
     });
 
   // $("body").mousemove(function () {
