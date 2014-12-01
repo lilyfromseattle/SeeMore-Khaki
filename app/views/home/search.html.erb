@@ -8,7 +8,7 @@
       <tr>
         <td><%= @author.service %></td>
         <td><%= @author.name %></td>
-        <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
+        <td><%= link_to "Subscribe", subscribe_path(@author.id), class: "btn add-author", method: :post %></td>
       </tr>
   <% end %>
 
@@ -21,7 +21,7 @@
       <tr>
         <td><%= image_tag(result[:avatar], class: "thumbnail") %>
         <td><%= result[:name] %></td>
-        <td><%= link_to "Subscribe", instagram_subscribe_path(result[:uid]), :class => "add-author", method: :post %></td>
+        <td><%= link_to "Subscribe", instagram_subscribe_path(result[:uid]), class: "btn add-author", method: :post %></td>
       </tr>
       <% end %>
     </tbody>
@@ -37,7 +37,7 @@
         <tr>
           <td><%= image_tag(result.profile_image_url, class: "thumbnail") %>
           <td><%= result.name %></td>
-          <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
+          <td><%= link_to "Subscribe", subscribe_path(@author.id), class: "btn add-author", method: :post %></td>
         </tr>
         <% end %>
       </tbody>
@@ -53,7 +53,7 @@
         <tr>
           <td><%= image_tag(@search_results.items[i].avatar_url, class: "thumbnail") %>
           <td><%= @search_results.items[i].login %></td>
-          <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
+          <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "btn add-author", method: :post %></td>
         </tr>
         <% end %>
       </tbody>

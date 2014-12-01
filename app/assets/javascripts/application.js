@@ -16,10 +16,39 @@
 
 $(document).ready(function() {
 
-  $(".search-icon").hover(function () {
-    $(this).siblings(".form-stuff").slideToggle(600);
-  });
+  // $(".search-icon").hover(function () {
+  //   $(this).siblings(".form-stuff").slideToggle(600);
+  // });
 
+  // $(".search-icon").hover(function () {
+  //   $(this).parent(".search").css("margin-left", "0");
+  // });
+
+  $(".search-icon").hover(function() {
+    $(this).parent(".search").animate(
+      {"margin-left": "0px",
+      "margin-right": "0px"},
+      "slow");
+    });
+
+
+
+    $("body").hover(function() {
+      $(".search").animate(
+        {"margin-left": "-250px",
+        "margin-right": "110px"},
+        "slow");
+      });
+
+    $("body").mousemove(function() {
+      $(".lids").animate(
+        {"height": "toggle"},
+        900);
+      });
+
+  // $("body").mousemove(function () {
+  //   $(".lids").animate("slow");
+  // });
 
   // jquery animate
   //   $(".search-icon").click(function(e) {

@@ -7,14 +7,15 @@
 
 <% if current_user %>
   <% user = User.find(current_user) %>
-  <p>Logged in via <%= user.provider.capitalize %> as <%= user.name %></p>
-  <%= link_to "Sign Out", signout_path, {method: "delete"} %>
-  <%= link_to "View Feed", feed_path(current_user), class: "sign-in" %>
+  <h2>Welcome back, <span class = "highlight"><%= user.name %></span>!</h2>
+  <p id = "logged-in">Logged in via <span class = "grey"><%= user.provider.capitalize %></span></p>
+  <%= link_to "Sign Out", signout_path, method: "delete", class: "li-links" %>
+  <%= link_to "View Feed", feed_path(current_user), class: "li-links" %>
 
 <% else %>
-  <%= link_to "Sign In with Fake Auth", "/auth/developer" %>
-  <%= link_to "Sign In with Instagram", "/auth/instagram", class: "sign-in" %>
-  <%= link_to "Sign In With Twitter", "/auth/twitter" %>
-  <%= link_to "Sign In With Vimeo", "/auth/vimeo" %>
-  <%= link_to "Sign In With GitHub", "/auth/github" %>
+  <%= link_to "Sign In with Fake Auth", "/auth/developer", class: "li-links" %>
+  <%= link_to "Sign In with Instagram", "/auth/instagram", class: "li-links" %>
+  <%= link_to "Sign In With Twitter", "/auth/twitter", class: "li-links" %>
+  <%= link_to "Sign In With Vimeo", "/auth/vimeo", class: "li-links" %>
+  <%= link_to "Sign In With GitHub", "/auth/github", class: "li-links" %>
 <% end %>
