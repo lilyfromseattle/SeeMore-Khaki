@@ -21,6 +21,7 @@
           </tr>
       <% elsif post.author.service == "Github" %>
           <tr>
+            <td><img src="<%= post.author.avatar %>"></td>
             <td><%= post.author.name %></td>
             <td><%= post.words %></td>
             <td><%= post.timestamp %> </td>

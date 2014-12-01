@@ -6,7 +6,8 @@ class TwitterHelper
     @tweets = []
     @client = client
     @search_results = search_results
-    @author.class == Author ? @avatar = @author.avatar : query_for_author
+    #
+    (@author.class == Author) ? (@avatar = @author.avatar) : query_for_author
   end
 
   def query_for_tweets
@@ -43,7 +44,7 @@ class TwitterHelper
         config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
         config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
       end
-      @author.avatar =
+
       @search_results = @client.user_search(@author.name).take(10)
     else
       new_author = Author.new(name: @author, service: "Twitter")

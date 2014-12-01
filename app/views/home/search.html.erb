@@ -32,7 +32,7 @@
     <table>
       <thead></thead>
       <tbody>
-        
+
         <% @search_results.each do |result| %>
         <tr>
           <td><%= image_tag(result.profile_image_url, class: "thumbnail") %>
@@ -43,14 +43,16 @@
       </tbody>
     </table>
 <% elsif params[:service] == "Github" %>
+
   <h1>Search results for <%= @author.name %> on Github</h1>
     <table>
       <thead></thead>
       <tbody>
-        <% @search_results.each do |result| %>
+      <%= @count = @search_results.total_count.to_i %>
+      <% @count.times do |i| %>
         <tr>
-          <td><%= image_tag(result.profile_image_url, class: "thumbnail") %>
-          <td><%= result.name %></td>
+          <td><%= image_tag(@search_results.items[i].avatar, class: "thumbnail") %>
+          <td><%= @search_results.items[i].login %></td>
           <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "add-author", method: :post %></td>
         </tr>
         <% end %>
