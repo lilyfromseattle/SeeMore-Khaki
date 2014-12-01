@@ -1,61 +1,80 @@
+
 class GithubHelper
-
-  attr_accessor :author, :activities, :search_results, :api_data, :results_array
-
+  attr_accessor :author, :activities, :client, :search_results, :api_data
   def initialize author
-    url = "https://github.com/login/oauth/authorize?scope=user:email&client_id}"
-    parse(HTTParty.get(url)["data"])
-
     @author = author
     @api_data = []
     @activities = []
     @client = client
     @search_results = search_results
-    @author.class == Author ? @avatar = @author.avatar : query_for_author
+    (@author.class == Author) ? (@avatar = @author.avatar) : query_for_author
   end
 
   def query_for_activities
+    puts "IS THIS QUERY EVER CALLED?"
+    @client = Octokit::Client.new(:access_token => "8cc24e088e03f0a44003bac6571e77d9f6d33b45")
 
-    @api_data = user_timeline(@author.name).take(5)
+    @api_data = @client.search_users(@author.name)
+    @author.update(avatar: @api_data.items[0].avatar_url.to_s)
     @api_data.each_with_index do |activity, i|
-      @activities << {
-      service: "Github",
-      user: [activity.user.name],
-      content: [activity.text],
-      timestamp: [activity.created_at]
-      }
+      unless old_activity = Post.find_by(author_id: @author.id, words: "Nothing to report!")
+        new_activity = Post.new(
+          author_id: @author.id,
+          words: "Nothing to report!",
+          timestamp: Time.now.to_s
+        )
+        if new_activity.save
+          @activities << new_activity
+        end
+      else
+        @activities << old_activity
+      end
     end
   end
 
   def query_for_author
     db_or_api
+    puts "QUESRY FOR AUTHOR"
     if @author.class == Author
-      @author
+      puts "new client"
+      @client = Octokit::Client.new(:access_token => "8cc24e088e03f0a44003bac6571e77d9f6d33b45")
 
-      @search_results = @client.user_search(@author.name).take(10)
+      @search_results = @client.search_users(@author)
     else
+      puts "AUTHOR CLASS"
       new_author = Author.new(name: @author, service: "Github")
       new_author.save
       @author = new_author
     end
   end
-
+  #
   def db_or_api
     if Author.find_by(name: @author, service: "Github")
       @author = Author.find_by(name: @author, service: "Github")
-      "IS IT FINDING IT BY NAME?"
+      puts "NEW AUTHOR"
     else
+      puts "OR NEW CLIENT"
+      @client = Octokit::Client.new(:access_token => "8cc24e088e03f0a44003bac6571e77d9f6d33b45")
+      # User.find_by_user_id(session[:user_id])
 
-      @search_results = @client.user_search(@author).take(10)
+      @search_results = @client.search_users(@author)
+      puts "SEARCH RESULTS: #{@search_results.inspect}"
       @api_data.each_with_index do |activity, i|
         @activities << []
-        # avatar = activity.profile_image_url
-        @activities[i] << author = activity.user
-        @activities[i] << text = activity.text
-        @activities[i] << timestamp = activity.created_at
-        # image = activity.user.image_path
+          puts "IS IT DOING THIS? #{activity.user}"
+          @activities[i] << author = activity.user
+          @activities[i] << text = activity.text
+          @activities[i] << timestamp = activity.created_at
+        # @activities[i] << author = @search_results.items[0].login
+        # puts "**1**"
+        # puts @search_results.items[0].login
+        # @activities[i] << text = @search_results.items[0].received_events_url
+        # puts "**2**"
+        # puts @search_results.items[0].received_events_url
+        # @activities[i] << timestamp = activity.created_at
+
       end
-      # .hashtags.each.text => [#<Github::Entity::Hashtag:0x007fea752a9420 @attrs={:text=>"WHD2013", :indices=>[17, 25]}>, #<Github::Entity::Hashtag:0x007fea752a93a8 @attrs={:text=>"EveryMileMatters", :indices=>[108, 125]}>, #<Github::Entity::Hashtag:0x007fea752a91c8 @attrs={:text=>"BeyGood", :indices=>[126, 134]}>]
+
     end
 
   end

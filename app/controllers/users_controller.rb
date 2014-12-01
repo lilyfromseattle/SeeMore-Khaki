@@ -7,15 +7,12 @@ class UsersController < ApplicationController
       flash[:notice] = "You are already subscribed to #{@author.name}!"
       # redirect_to "/home/subscribed"
       redirect_to "/users/#{session[:current_user]}/feed"
-
     else
       @authors_user = AuthorsUser.new
-
       @authors_user.author_id = @author.id
       @authors_user.user_id = session[:current_user]
       # redirect_to "/users/#{session[:current_user]}/feed"
       if @authors_user.save
-
         flash[:notice] = "You are now subscribed to #{@author.name}!"
         # redirect_to "/home/subscribed"
         redirect_to "/users/#{session[:current_user]}/feed"

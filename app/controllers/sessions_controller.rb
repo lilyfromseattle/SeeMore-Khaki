@@ -7,6 +7,7 @@ skip_before_filter :verify_authenticity_token, only: :create
   end
 
   def create
+    puts "WE ARE CREATING"
     puts params.inspect
     user = User.find_by_provider(provider, uid)
     if user
