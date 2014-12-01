@@ -12,7 +12,7 @@ class GithubHelper
 
   def query_for_activities
     puts "IS THIS QUERY EVER CALLED?"
-    @client = Octokit::Client.new(:access_token => "8cc24e088e03f0a44003bac6571e77d9f6d33b45")
+    @client = Octokit::Client.new :client_id => ENV["GITHUB_CLIENT_ID"], :client_secret => ENV["GITHUB_CLIENT_SECRET"]
 
     @api_data = @client.search_users(@author.name)
     @author.update(avatar: @api_data.items[0].avatar_url.to_s)
@@ -37,7 +37,7 @@ class GithubHelper
     puts "QUESRY FOR AUTHOR"
     if @author.class == Author
       puts "new client"
-      @client = Octokit::Client.new(:access_token => "8cc24e088e03f0a44003bac6571e77d9f6d33b45")
+      @client = Octokit::Client.new :client_id => ENV["GITHUB_CLIENT_ID"], :client_secret => ENV["GITHUB_CLIENT_SECRET"]
 
       @search_results = @client.search_users(@author)
     else
@@ -54,7 +54,7 @@ class GithubHelper
       puts "NEW AUTHOR"
     else
       puts "OR NEW CLIENT"
-      @client = Octokit::Client.new(:access_token => "8cc24e088e03f0a44003bac6571e77d9f6d33b45")
+      @client = Octokit::Client.new :client_id => ENV["GITHUB_CLIENT_ID"], :client_secret => ENV["GITHUB_CLIENT_SECRET"]
       # User.find_by_user_id(session[:user_id])
 
       @search_results = @client.search_users(@author)

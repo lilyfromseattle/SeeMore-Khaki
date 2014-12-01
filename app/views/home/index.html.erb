@@ -2,8 +2,8 @@
 <% current_user = session[:current_user] %>
 
 <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 
 <% if current_user %>
   <% user = User.find(current_user) %>
