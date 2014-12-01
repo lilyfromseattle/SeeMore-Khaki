@@ -45,6 +45,16 @@ $(document).ready(function() {
         {"height": "toggle"},
         900);
       });
+    $(".btn").click(function(e) {
+      e.preventDefault();
+      
+    });
+    $.ajax( $form.attr(""), {
+            type: 'Post',
+            success: function() {
+
+            }
+    });
 
   // $("body").mousemove(function () {
   //   $(".lids").animate("slow");
