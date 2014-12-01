@@ -14,22 +14,41 @@ class GithubHelper
     puts "IS THIS QUERY EVER CALLED?"
     @client = Octokit::Client.new :client_id => ENV["GITHUB_CLIENT_ID"], :client_secret => ENV["GITHUB_CLIENT_SECRET"]
 
-    @api_data = @client.search_users(@author.name)
-    @author.update(avatar: @api_data.items[0].avatar_url.to_s)
-    @api_data.each_with_index do |activity, i|
-      unless old_activity = Post.find_by(author_id: @author.id, words: "Nothing to report!")
-        new_activity = Post.new(
-          author_id: @author.id,
-          words: "Nothing to report!",
-          timestamp: Time.now.to_s
-        )
-        if new_activity.save
-          @activities << new_activity
-        end
-      else
-        @activities << old_activity
+    @api_data = @client.user(@author.name)
+    puts "API DATA: #{@api_data.inspect}"
+    @author.update(avatar: @api_data.avatar_url.to_s)
+
+    unless old_activity = Post.find_by(author_id: @author.id)
+      new_activity = Post.new(author_id: @author.id, words: "See my site @ #{@api_data.url}", timestamp: @api_data.created_at)
+      if new_activity.save
+        @activities << new_activity
       end
+    else
+      puts "ELSE"
+      @activities << old_activity
     end
+
+
+    # @api_data.each_with_index do |key, array, i|
+    #   puts "KEY: #{key}"
+    #   puts "ARRAY: #{array}"
+    #   puts "i: #{i}"
+    #   puts "Can IT GET IN THE EACH?"
+    #   unless old_activity = Post.find_by(author_id: @author.id, words: "Nothing to report!")
+    #     puts "IN UNLESS"
+    #     new_activity = Post.new(
+    #       author_id: @author.id,
+    #       words: "Nothing to report!",
+    #       timestamp: Time.now.to_s
+    #     )
+    #     if new_activity.save
+    #       @activities << new_activity
+    #     end
+    #   else
+    #     puts "ELSE"
+    #     @activities << old_activity
+    #   end
+    # end
   end
 
   def query_for_author
