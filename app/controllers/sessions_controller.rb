@@ -1,28 +1,23 @@
 class SessionsController < ApplicationController
-skip_before_filter :verify_authenticity_token, only: :create
-# otherwise rails clobbers the session because callback is sent as a post request (from some APIs)
+  skip_before_filter :verify_authenticity_token, only: :create
+  # otherwise rails clobbers session because callback is sent as post request (from some APIs)
 
   def new
     create
   end
 
   def create
-    puts "WE ARE CREATING"
-    puts params.inspect
     user = User.find_by_provider(provider, uid)
     if user
       session[:current_user] = user.id
       flash.notice = notice(:signin, user.name)
       redirect_to root_path
-
     else
       user = User.new(new_user_params)
-
       if user.save
         session[:current_user] = user.id
         flash.notice = notice(:signup, user.name)
         redirect_to root_path
-
       else
         render "/auth/#{provider}"
       end
@@ -47,7 +42,6 @@ skip_before_filter :verify_authenticity_token, only: :create
     end
 
     def auth_hash
-      #raise
       request.env['omniauth.auth']
     end
 
