@@ -24,7 +24,8 @@ class TwitterHelper
         new_tweet = Post.new(
           author_id: @author.id,
           words: tweet.text,
-          timestamp: tweet.created_at.to_s
+          timestamp: tweet.created_at.to_s,
+          url_id: tweet.uri.to_s
         )
         if new_tweet.save
           @tweets << new_tweet
