@@ -46,6 +46,19 @@ $(document).ready(function() {
         900);
       });
 
+    $(".btn").click(function() {
+        $.ajax( this.href , {
+            type: 'Post',
+            success: function() {
+              console.log("it worked?");
+            },
+            failure: function() {
+              console.log("it didn't work");
+            }
+        });
+        return false;
+    });
+
   // $("body").mousemove(function () {
   //   $(".lids").animate("slow");
   // });
