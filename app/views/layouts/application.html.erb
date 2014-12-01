@@ -27,13 +27,20 @@
         <div class = "pupil"></div>
         <div class = "med-circle"></div>
         <div class = "xs-circle"></div>
+        <div id = "right-lid" class = "lids"></div>
       </div>
-      <h1>feed<span>[</span>me<span>]</span></h1>
+      <h1 id = "feed-me-title">feed<span>[</span>me<span>]</span></h1>
+      <h1 id = "feed-me-title-2">feed<br> <span>[</span>me<span>]</span></h1>
       <!-- <div class = "small-circle"></div>
       <div class = "big-circle"></div> -->
-      <div class = "float"></div>
     </div>
   </header>
+  <!-- <div class = "float">
+    <div id = "right-lid" class = "lids"></div>
+  </div> -->
+
+  <div id = "left-lid" class = "lids"></div>
+
 
 
   <div class="container2 zigzag"></div>
@@ -48,9 +55,8 @@
         <%= hidden_field_tag :service, "Vimeo" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
       <!-- </div> -->
-
         <div class = "search-icon">
-          <%= image_tag "vimeo_icon.png", class: "icon" %>
+          <%= image_tag "vimeo_icon1.png", class: "icon" %>
           <span class="sr-only">Vimeo Icon</span>
         </div>
       <% end %>
@@ -64,7 +70,7 @@
 
       <!-- </div> -->
         <div class="search-icon">
-          <%= image_tag "twitter_icon.png", class: "icon" %>
+          <%= image_tag "twitter_icon1.png", class: "icon" %>
           <span class="sr-only">Twitter Icon</span>
         </div>
       <% end %>
@@ -77,7 +83,7 @@
         <%= submit_tag "Search", name: nil, class: "button" %>
 
         <div class="search-icon">
-          <%= image_tag "instagram-icon.png", class: "icon" %>
+          <%= image_tag "instagram-icon1.png", class: "icon" %>
           <span class="sr-only">Instagram Icon</span>
         </div>
       <% end %>
@@ -89,7 +95,7 @@
           <%= submit_tag "Search", name: nil, class: "button" %>
 
           <div class="search-icon">
-            <%= image_tag "github_icon.png", class: "icon" %>
+            <%= image_tag "github_icon1.png", class: "icon" %>
             <span class="sr-only">Github Icon</span>
           </div>
         <% end %>
