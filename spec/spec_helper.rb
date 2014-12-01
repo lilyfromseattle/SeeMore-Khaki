@@ -35,9 +35,11 @@ RSpec.configure do |config|
     # set per-provider (or default) authentication
     # hashes to return during testing.
 
-    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({:provider => 'twitter', :uid => '123545', info: {email: "a@b.com", nickname: "Bookis"}})
+    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(
+         {provider:'twitter',
+          uid: '123545',
+          info: {email: "a@b.com", nickname: "Bookis" } })
   end
-
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -65,7 +67,7 @@ RSpec.configure do |config|
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
-=begin
+# =begin
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
   # `:focus` metadata. When nothing is tagged with `:focus`, all examples
@@ -73,7 +75,8 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
 
-  # Limits the available syntax to the non-monkey patched syntax that is recommended.
+  # Limits the available syntax to the non-monkey patched syntax that is
+  # recommended.
   # For more details, see:
   #   - http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax
   #   - http://teaisaweso.me/blog/2013/05/27/rspecs-new-message-expectation-syntax/
