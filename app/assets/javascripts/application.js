@@ -46,17 +46,17 @@ $(document).ready(function() {
         900);
       });
 
-    $(".btn.add-author").click(function(e) {
-      e.preventDefault();
-      var $author = this.parents(form);
-
-        $.ajax( $form.attr(""), {
+    $(".btn").click(function() {
+        $.ajax( this.href , {
             type: 'Post',
             success: function() {
-
+              console.log("it worked?");
+            },
+            failure: function() {
+              console.log("it didn't work");
             }
         });
-
+        return false;
     });
 
   // $("body").mousemove(function () {
