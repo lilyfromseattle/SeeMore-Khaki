@@ -38,7 +38,7 @@
         <tr>
           <td><%= image_tag(result.profile_image_url, class: "thumbnail") %>
           <td><%= result.name %></td>
-          <td><%= link_to "Subscribe", subscribe_path(result.author.id), class: "btn li-links", method: :post %></td>
+          <td><%= link_to "Subscribe", subscribe_path(@author.id), class: "btn li-links", method: :post %></td>
         </tr>
         <% end %>
       </tbody>
