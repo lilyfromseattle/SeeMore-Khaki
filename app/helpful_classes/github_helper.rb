@@ -8,6 +8,7 @@ class GithubHelper
     @client = client
     @search_results = search_results
     (@author.class == Author) ? (@avatar = @author.avatar) : query_for_author
+
   end
 
   def query_for_activities
