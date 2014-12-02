@@ -7,7 +7,7 @@
     <thead></thead>
     <tbody>
       <tr>
-        <td><%= @author.service %></td>
+        <td><%= image_tag(@author.avatar, class: "thumbnail") %></td>
         <td><%= @author.name %></td>
         <td><%= link_to "Subscribe", subscribe_path(@author.id), class: "btn li-links", method: :post %></td>
       </tr>

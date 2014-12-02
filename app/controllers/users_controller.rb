@@ -5,7 +5,11 @@ class UsersController < ApplicationController
     if AuthorsUser.where(user_id: @user.id, author_id: @author.id) != []
       flash[:notice] = "You are already subscribed to #{@author.name}!"
       # redirect_to "/home/subscribed"
-      redirect_to "/users/#{session[:current_user]}/feed"
+      if ! request.xhr?
+        redirect_to "/users/#{session[:current_user]}/feed"
+      else
+        render :json => @author
+      end
     else
       @authors_user = AuthorsUser.new
       @authors_user.author_id = @author.id
@@ -14,7 +18,11 @@ class UsersController < ApplicationController
       if @authors_user.save
         flash[:notice] = "You are now subscribed to #{@author.name}!"
         # redirect_to "/home/subscribed"
-        redirect_to "/users/#{session[:current_user]}/feed"
+        if ! request.xhr?
+          redirect_to "/users/#{session[:current_user]}/feed"
+        else
+          render :json => @author
+        end
       end
     end
   end

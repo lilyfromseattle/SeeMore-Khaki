@@ -23,9 +23,10 @@
           </tr>
       <% elsif post.author.service == "Github" %>
           <tr>
+
             <td><%= image_tag("github_icon2.png", class: "social-icon") %></td>
             <td><%= link_to post.author.name, "http://github.com/#{post.author.name}", class: "feed-link"%></td>
-            <td><img src="<%= post.author.avatar %>"></td>
+            <td><img class= "thumbnail" src="<%= post.author.avatar %>"></td>
             <td><%= post.words %></td>
             <td>Created <%= time_ago_in_words(post.timestamp) %> ago</td>
           </tr>
