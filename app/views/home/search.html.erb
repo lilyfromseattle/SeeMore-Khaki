@@ -3,25 +3,28 @@
   <% if @author.class == String %>
     <%= @author %>
   <% else %>
+  <table class = "table table-responsive">
     <thead></thead>
     <tbody>
       <tr>
         <td><%= image_tag(@author.avatar, class: "thumbnail") %></td>
         <td><%= @author.name %></td>
-        <td><%= link_to "Subscribe", subscribe_path(@author.id), class: "btn add-author", method: :post %></td>
+        <td><%= link_to "Subscribe", subscribe_path(@author.id), class: "btn li-links", method: :post %></td>
       </tr>
   <% end %>
+</tbody>
+</table>
 
 <% elsif params[:service] == "Instagram" %>
   <h1>Search results for <%= @search_term %> on Instagram</h1>
-  <table>
+  <table class = "table table-responsive">
     <thead></thead>
     <tbody>
       <% @search_results.each do |result| %>
       <tr>
         <td><%= image_tag(result[:avatar], class: "thumbnail") %>
         <td><%= result[:name] %></td>
-        <td><%= link_to "Subscribe", instagram_subscribe_path(result[:uid]), class: "btn add-author", method: :post %></td>
+        <td><%= link_to "Subscribe", instagram_subscribe_path(result[:uid]), class: "btn li-links", method: :post %></td>
       </tr>
       <% end %>
     </tbody>
@@ -29,7 +32,7 @@
 
 <% elsif params[:service] == "Twitter" %>
   <h1>Search results for <%= @author.name %> on Twitter</h1>
-    <table>
+    <table class = "table table-responsive">
       <thead></thead>
       <tbody>
 
@@ -37,7 +40,7 @@
         <tr>
           <td><%= image_tag(result.profile_image_url, class: "thumbnail") %>
           <td><%= result.name %></td>
-          <td><%= link_to "Subscribe", subscribe_path(@author.id), class: "btn add-author", method: :post %></td>
+          <td><%= link_to "Subscribe", subscribe_path(@author.id), class: "btn li-links", method: :post %></td>
         </tr>
         <% end %>
       </tbody>
@@ -45,7 +48,7 @@
 <% elsif params[:service] == "Github" %>
 
   <h1>Search results for <%= @author.name %> on Github</h1>
-    <table>
+    <table class = "table table-responsive">
       <thead></thead>
       <tbody>
       <% @count = @search_results.total_count.to_i %>
@@ -53,7 +56,7 @@
         <tr>
           <td><%= image_tag(@search_results.items[i].avatar_url, class: "thumbnail") %>
           <td><%= @search_results.items[i].login %></td>
-          <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "btn add-author", method: :post %></td>
+          <td><%= link_to "Subscribe", subscribe_path(@author.id), :class => "btn li-links", method: :post %></td>
         </tr>
         <% end %>
       </tbody>
