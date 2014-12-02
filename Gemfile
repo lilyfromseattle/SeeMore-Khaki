@@ -52,7 +52,7 @@ gem 'github_api'
 
 gem 'typhoeus'
 
-group :development do
+group :development, :test do
   gem 'rspec-rails'
 end
 
