@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
 ######### instagram
 
-  get     '/instagram/search/:results', to: 'home#instagram_search', as: :instagram_results
   post    '/instagram/subscribe/:uid',  to: 'users#instagram_subscribe', as: :instagram_subscribe
 
 

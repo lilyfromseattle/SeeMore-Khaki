@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.find(session[:current_user])
     @author = Author.find(params[:id])
     if AuthorsUser.where(user_id: @user.id, author_id: @author.id) != []
-      flash[:notice] = "You are already subscribed to #{@author.name}!"
+      flash[:notice] = "You are already subscribed to #{@author.name} on #{author.service}!"
       # redirect_to "/home/subscribed"
       if ! request.xhr?
         redirect_to "/users/#{session[:current_user]}/feed"
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       @authors_user.user_id = session[:current_user]
       # redirect_to "/users/#{session[:current_user]}/feed"
       if @authors_user.save
-        flash[:notice] = "You are now subscribed to #{@author.name}!"
+        flash[:notice] = "You are now subscribed to #{@author.name} on #{author.service}!"
         # redirect_to "/home/subscribed"
         if ! request.xhr?
           redirect_to "/users/#{session[:current_user]}/feed"
@@ -58,6 +58,7 @@ class UsersController < ApplicationController
         })
       if author.save
         add_and_confirm(author)
+        InstagramHelper.new.query_for_igs(author.uid, @user.id)
       else
         raise "this is probably instagram's fault"
       end

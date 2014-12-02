@@ -38,8 +38,8 @@ header h1 {
   font-size: 4.4em;
   display: inline-block;
   color: beige;
-  margin-left: 30%;
-  margin-right: 30%;
+  /*margin-left: 30%;
+  margin-right: 30%;*/
   /*margin-top: -5px;*/
   font-family: 'Slackey';
   font-weight: 200;
@@ -468,7 +468,7 @@ form {
 }
 
 .li-links {
-  background: khaki;
+  background: white;
   padding: 7px;
   border-radius: 15px;
   color: green;
@@ -507,16 +507,56 @@ form {
   margin-right: 40%;
 }
 
-.user-name {
+.feed-link {
   color: yellowgreen;
-  font-size: 2em;
+  font-size: 1.3em;
   font-style: bold;
 }
 
-.notice {
-  background-image: linear-gradient(to right, white, beige, white);
+.feed-link:hover {
+  text-decoration: none;
   color: green;
+}
+.social-icon {
+  height: 40px;
+  width: 40px;
+}
+.notice {
+  background-image: linear-gradient(to right, beige, green, beige);
+  color: beige;
   margin-bottom :20px;
+}
+
+.no-line {
+  color: black;
+}
+
+.no-line:hover {
+  text-decoration: none;
+  color:green;
+}
+
+.logout {
+  width: 50px;
+  height: 50px;
+  /*background: beige;
+  border-radius: 25px;*/
+}
+
+.home {
+  height: 40px;
+  width: 40px;
+}
+.logout-div {
+  width: 55px;
+  height: 55px;
+  background: beige;
+  padding: 3px;
+  margin-top: 20px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border: 2px solid green;
+  border-left: none;
 }
 @media screen and (max-width: 720px) {
   #feed-me-title {
@@ -528,5 +568,13 @@ form {
 
   #feed-me-title-2 {
     display: inline-block;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #feed-me-title {
+    /*color: pink;*/
+    margin-left: 40%;
+    margin-right: 30%;
   }
 }
