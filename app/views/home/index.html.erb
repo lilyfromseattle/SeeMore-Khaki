@@ -2,12 +2,12 @@
 <% current_user = session[:current_user] %>
 
 <% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
+  <h2 class="notice"><%= flash[:notice] %></h2>
 <% end %>
 
 <% if current_user %>
   <% user = User.find(current_user) %>
-  <h2>Welcome back, <span class = "highlight"><%= user.name %></span>!</h2>
+  <!-- <h2>Welcome back, <span class = "highlight"><%= user.name %></span>!</h2> -->
   <p id = "logged-in">Logged in via <span class = "grey"><%= user.provider.capitalize %></span></p>
   <%= link_to "Sign Out", signout_path, method: "delete", class: "li-links" %>
   <%= link_to "View Feed", feed_path(current_user), class: "li-links" %>
