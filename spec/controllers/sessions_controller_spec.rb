@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'rails_helper'
 
 describe SessionsController do
@@ -15,7 +14,7 @@ describe SessionsController do
   #     expect(session[:current_user]).to eq user.id
   #   end
   # end
-    
+
 
   #LKD wrote the following test (copying from lecture, but still.)
   describe 'GET create' do
