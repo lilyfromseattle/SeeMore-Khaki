@@ -32,7 +32,7 @@
           </tr>
       <% elsif post.author.service == "Instagram" %>
           <tr>
-            <td><%= image_tag("instagram_icon2.png", class: "social-icon") %></td>
+            <td><%= image_tag("instagram-icon2.png", class: "social-icon") %></td>
             <td><%= link_to post.author.name, "http://instagram.com/#{post.author.name}", class: "feed-link" %></td>
             <td><%= image_tag(post.author.avatar, size: "48x48") %>
             <td><%= link_to image_tag(post.words, caption: post.words), post.url_id %></td>
