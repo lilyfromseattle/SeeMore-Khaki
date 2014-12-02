@@ -47,6 +47,7 @@ class VimeoHelper
       new_author = Author.new(name: @author, service: "Vimeo")
       new_author.save
       @author = new_author
+      query_for_vids # added this line to initialize a new author with an initial API call to load posts into DB (else will not appear in feed because timestamp is within last hour)
     else
       @author = @api_data
     end

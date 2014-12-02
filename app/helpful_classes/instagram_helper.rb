@@ -11,7 +11,6 @@ class InstagramHelper
   def query_for_igs(uid, current_user)
     url = "https://api.instagram.com/v1/users/#{uid}/media/recent?client_id=#{ENV["INSTAGRAM_CLIENT_ID"]}"
     add_igs_to_db(HTTParty.get(url)["data"], current_user)
-
   end
 
   private
