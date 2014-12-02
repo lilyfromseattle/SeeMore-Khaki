@@ -33,7 +33,7 @@ class FeedController < ApplicationController
         @posts += author.posts
       end
     end
-
+ #blank test
     @posts.sort_by! { |post| post.timestamp }
     @posts.reverse!
 

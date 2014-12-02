@@ -57,8 +57,7 @@ class TwitterHelper
 
   def db_or_api
     if Author.find_by(name: @author, service: "Twitter")
-      @author = Author.find_by(name: @author, service: "Twitter")
-      "IS IT FINDING IT BY NAME?"
+      @author = Author.find_by(name:@author, service: "Twitter")
     else
       @client = Twitter::REST::Client.new do |config|
         config.consumer_key        = ENV["TWITTER_API_KEY"]

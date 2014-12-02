@@ -2,25 +2,35 @@ class UsersController < ApplicationController
   def subscribe
     @user = User.find(session[:current_user])
     @author = Author.find(params[:id])
+    puts "WE ARE HERE 111"
     if AuthorsUser.where(user_id: @user.id, author_id: @author.id) != []
+      puts "AUTHORS USER  222"
       flash[:notice] = "You are already subscribed to #{@author.name} on #{@author.service}!"
+
       # redirect_to "/home/subscribed"
       if ! request.xhr?
+        puts "*******3333********"
         redirect_to "/users/#{session[:current_user]}/feed"
       else
+        puts "*******44444********"
         render :json => @author
       end
     else
+      puts "NEW AUTHOR_USER 333"
       @authors_user = AuthorsUser.new
       @authors_user.author_id = @author.id
       @authors_user.user_id = session[:current_user]
       # redirect_to "/users/#{session[:current_user]}/feed"
       if @authors_user.save
+        puts "*******5555********"
         flash[:notice] = "You are now subscribed to #{@author.name} on #{@author.service}!"
+
         # redirect_to "/home/subscribed"
         if ! request.xhr?
+          puts "*******66666********"
           redirect_to "/users/#{session[:current_user]}/feed"
         else
+          puts "*******7777********"
           render :json => @author
         end
       end
