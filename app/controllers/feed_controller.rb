@@ -27,7 +27,7 @@ class FeedController < ApplicationController
         @posts += z.activities
       end
     end
-
+ #blank test
     @posts.sort_by! { |post| post.timestamp }
     @posts.reverse!
 
